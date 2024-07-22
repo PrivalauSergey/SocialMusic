@@ -29,6 +29,8 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
 **Books**
 - [Software Architecture in Practice](https://www.amazon.com/Software-Architecture-Practice-3rd-Engineering/dp/0321815734) by Len Bass, Paul Clements, and Rick Kazman
 - [Designing Software Architectures: A Practical Approach](https://www.amazon.com/Designing-Software-Architectures-Practical-Approach/dp/0134390784) by Humberto Cervantes and Rick Kazman
+- [Fundamentals of Software Architecture: An Engineering Approach](https://www.amazon.com/Fundamentals-Software-Architecture-Comprehensive-Characteristics/dp/1492043451) by Mark Richards and Neal Ford
+- [Software Architecture: The Hard Parts: Modern Trade-Off Analyses for Distributed Architectures](https://www.amazon.com/Software-Architecture-Trade-Off-Distributed-Architectures/dp/1492086894) by Neal Ford, Mark Richards, Pramod Sadalage and Zhamak Dehghani
 
 **Links**
 - [Architecture Architetcure Guide](https://guidanceshare.com/wiki/Application_Architecture_Guide) Common Free Guide
