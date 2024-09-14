@@ -5,7 +5,7 @@ Mentoring focused on building an individual learning path based on the applicati
 
 **Variable Practical** modules will be adapted for the toolset that the mentee chooses during the common engineering modules. Different variations of the learning path can then be introduced and explored during the implementation of the mentee's application. This types of modules related to creation of the project and in most cases witout time limitations
 
-**Variable Theoretical** modules to deep dive to technologies and tools have been chosen by menteed on the previous modules. Mostly modules will be theoretical to explain best practices, tooling for the mentee which can be used for mentee's project development 
+**Variable Theoretical** modules to deep dive to technologies and tools have been chosen by menteed on the previous modules. Mostly modules will be theoretical to explain best practices, tooling for the mentee which can be used for mentee's project development
 
 The mentor can also include additional topics to address the mentee's technological or theoretical gaps.
 
@@ -71,9 +71,9 @@ Session: **Time: 1.5h**
 
 - Classic architecture approaches overview
     - General Solution (Enterprise) Architecture. (IASA, Custom based on books, etc.)
-        - TOGAF 
+        - TOGAF
         - Zachman Framework
-        - ITIL        
+        - ITIL
 - Continous Architecture overview
 - Theory of invention overview (TRIZ, ARIZ)
 - Decision making approaches
@@ -175,7 +175,7 @@ Session: **Time: 1.5h**
         Strive for clarity and conciseness.
 - API Documentation overview (SWAGGER, Open API)
 - Architecture Documentation Best Practices
-    1. Identify Stakeholders 
+    1. Identify Stakeholders
         Understand who will use the documentation (developers, architects, managers, etc.).
         Tailor Content: Customize the level of detail and technicality based on the audience's needs.
 
@@ -287,7 +287,7 @@ Session: **Time: 1.5h**
 ## Theory
 
 - Architecture Styles and Patterns overview
-    - Styles vs Patterns 
+    - Styles vs Patterns
     - SOA
     - Microservice
     - Actors
@@ -296,7 +296,7 @@ Session: **Time: 1.5h**
     - Event Driven Architecture
     - Pipes and filters
     - etc
-- Conway's law 
+- Conway's law
 - SOLID
 - OOP
 - GRASP
@@ -320,7 +320,7 @@ Session: **Time: 1.5h**
 - [GoF Patterns](https://en.wikipedia.org/wiki/Design_Patterns)
 - [Software Design Patterns](https://en.wikipedia.org/wiki/Software_design_pattern)
 - [GRASP](https://en.wikipedia.org/wiki/GRASP_(object-oriented_design)
- 
+
 
 **Video**
 - [Actors](https://www.youtube.com/watch?v=z0N1aZ6SnBk&list=PLJaxDcIXbeDtwZAZcJSzNGMOe2B1l3pYi)
@@ -334,7 +334,7 @@ Session: **Time: 1.5h**
 
 Session: **Time: 1.5h**
 
-Practice: **Continous not time limitation**  
+Practice: **Continous not time limitation**
 
 ## Variations
 - (Primary) MVP and First Deployment - for simple sturtup like applications and agile developemt
@@ -377,9 +377,9 @@ Practice: **Continous not time limitation**
     - Continous code, manifests review and gaps capturing
     - Review goals
 
-# Microservises Deep Dive (Variative Theoretical Module)
+# Microservises Deep Dive Part 1 (Variative Theoretical Module)
 
-Session: **Time: 2h**
+Session: **Time: 1.5h**
 
 ## Theory
 - [Microservises](https://en.wikipedia.org/wiki/Microservices) style overview and why do we need it?
@@ -393,27 +393,69 @@ Session: **Time: 2h**
     - [Bounded by context and relations with DDD](https://martinfowler.com/bliki/BoundedContext.html)
     - Autonomous development
     - Individually deployable
-- Benefits 
+- Benefits
     - (Complexity) Easy to implement and understand separate services and component
     - (Integration) Can itegrate services with many other services
-    - (Scalability) Can be scaled independently 
+    - (Scalability) Can be scaled independently
     - (Deployment) Can be deployed independently with fast timeto market
     - (Low Coupling) Low coupling between services
-    - (Recilency) Fault Tolerance 
+    - (Recilency) Fault Tolerance
 - Conserns
-    - Cost of communication 
+    - Cost of communication
     - Higer testing and deployment efforts
     - Difficult responsibilities segregation
     - Hard transactions management
     - Required high engineering level of organization
-    - Required hard contracts negotiation 
-- Implementation of style: the main idea to use benefits and reduce negative effects
+    - Required hard contracts negotiation
+- Implementation apporaches:
     - [Fowler Characteristics](https://medium.com/design-microservices-architecture-with-patterns/top-10-characteristics-of-microservices-12b046a59bfc)
-- Tradeoffs
+    - [Netflix Implementation](https://www.youtube.com/watch?v=CZ3wIuvmHeM)
+    - [Microsoft Example and Learning](https://github.com/dotnet/eShop)
+- Tradeoffs and holly wars
+    - Code sharing option:
+        - Library vs Service
+        - Library vs Copy/Paste
+    - Monorepo vs Multirepo
+    - Consistency: Eventually consistency vs Strong Consistency
+    - Polyghlot technology and persistance vs Monotechnology
+- Implementation: How to minimize pros and maximize cons
+    - Transform you organization (culture)
+        - Microteams
+        - Service's ownership
+        - Train you team
+        - Build governance and laws
+    - Build or Buy Ops and Tooling
+    - Minimize communication overhead
+        - Improve protocols and pipes
+    - Design UI/UX
+        - Handles eventually consistency
+        - Handles asyncronous processes
+    - Use proper infrastructure
+        - Containerization and orchestration
+        - Automate infrastructure creation and support
+    - Prepare development environment
+        - Ephemeral environments
+        - Testing and deployment
+    - Use proper service boundary
+        - Storage per services
+        - Schema management
+        - Service communication
 
 **Links**
+- [Microsoft Guide](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/)
 - [Microservices in Amazon article](https://medium.com/design-microservices-architecture-with-patterns/top-10-characteristics-of-microservices-12b046a59bfc)
 - [Microservices style by Fowler](https://martinfowler.com/articles/microservices.html#CharacteristicsOfAMicroserviceArchitecture)
+- [Microservices Patterns](https://microservices.io/patterns/index.html)
+- [Microservices Shared Library](https://medium.com/duda/shared-libraries-design-and-best-practices-710774ae0bdc)
+- [Shared Functionality Library vs Service](https://medium.com/simpplr-technology/microservices-architecture-shared-functionality-library-or-service-69781536dc3e)
+- [Monoreo vs Multirepo](https://medium.com/@kazimozkabadayi/choosing-between-monorepo-and-multi-repo-architectures-in-software-development-5b9357334ed2)
+- [Monorepo vs Multirepo](https://www.linkedin.com/pulse/monorepo-vs-multi-repos-comprehensive-comparison-frovis)
+- [Microservices Tradeoffs](https://martinfowler.com/articles/microservice-trade-offs.html)
+- [Service Ownership](https://medium.com/capital-one-tech/cultural-elements-of-microservices-service-ownership-7ff3acea7d92)
+- [Backstage](https://backstage.io/)
+
+**Books**
+- [Microservices patterns](https://microservices.io/book)
 
 
 
