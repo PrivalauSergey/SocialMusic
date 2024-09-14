@@ -1,15 +1,19 @@
 # Basic Concept
 Mentoring focused on building an individual learning path based on the application that the mentee wants to create during the mentoring process. The program includes fixed and variable modules.
 
-Fixed modules are related to common engineering practices that can be used for building applications in different programming languages and on different platforms.
+**Fixed Theoretical** modules are related to common engineering practices that can be used for building applications in different programming languages and different platforms. Mostly modules are theoretical with practical tasks or examples.
 
-Variable modules will be adapted for the toolset that the mentee chooses during the common engineering modules. Different variations of the learning path can then be introduced and explored during the implementation of the mentee's application.
+**Variable Practical** modules will be adapted for the toolset that the mentee chooses during the common engineering modules. Different variations of the learning path can then be introduced and explored during the implementation of the mentee's application. This types of modules related to creation of the project and in most cases witout time limitations
+
+**Variable Theoretical** modules to deep dive to technologies and tools have been chosen by menteed on the previous modules. Mostly modules will be theoretical to explain best practices, tooling for the mentee which can be used for mentee's project development 
 
 The mentor can also include additional topics to address the mentee's technological or theoretical gaps.
 
 Additionally, mentoring will include fundamental modules that can be chosen for separate sessions.
 
-# Solution/Software Architecture and Engineering Basics (Fixed)
+# Solution/Software Architecture and Engineering Basics (Fixed Theoretical)
+
+Session: **Time: 1.5h**
 
 ## Theory
 
@@ -29,8 +33,6 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
 **Books**
 - [Software Architecture in Practice](https://www.amazon.com/Software-Architecture-Practice-3rd-Engineering/dp/0321815734) by Len Bass, Paul Clements, and Rick Kazman
 - [Designing Software Architectures: A Practical Approach](https://www.amazon.com/Designing-Software-Architectures-Practical-Approach/dp/0134390784) by Humberto Cervantes and Rick Kazman
-- [Fundamentals of Software Architecture: An Engineering Approach](https://www.amazon.com/Fundamentals-Software-Architecture-Comprehensive-Characteristics/dp/1492043451) by Mark Richards and Neal Ford
-- [Software Architecture: The Hard Parts: Modern Trade-Off Analyses for Distributed Architectures](https://www.amazon.com/Software-Architecture-Trade-Off-Distributed-Architectures/dp/1492086894) by Neal Ford, Mark Richards, Pramod Sadalage and Zhamak Dehghani
 
 **Links**
 - [Architecture Architetcure Guide](https://guidanceshare.com/wiki/Application_Architecture_Guide) Common Free Guide
@@ -62,6 +64,8 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
     - Choose definition format applicable for the task
 
 # Architecture and Engineering Approaches (Fixed)
+
+Session: **Time: 1.5h**
 
 ## Theory
 
@@ -111,7 +115,9 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
     - Choose delivery style and approaches
     - Document decision made (consider pros and cons, understand tradeoffs of the choosen style)
 
-# Architecture Documentation and Knowledge Sharing (Fixed)
+# Architecture Documentation and Knowledge Sharing (Fixed Theoretical)
+
+Session: **Time: 1.5h**
 
 ## Theory
 
@@ -274,7 +280,9 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
 
     - Choose knowledge sharing approach and documentation style
 
-# Architecture and Engineering styles and patterns (Fixed)
+# Architecture and Engineering styles and patterns (Fixed Theoretical)
+
+Session: **Time: 1.5h**
 
 ## Theory
 
@@ -322,7 +330,11 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
 
     - Choose usefull patterns and architecture styles
 
-# MVP and First Deployment (Variative Module)
+# MVP and First Deployment (Variative Practical Module)
+
+Session: **Time: 1.5h**
+
+Practice: **Continous not time limitation**  
 
 ## Variations
 - (Primary) MVP and First Deployment - for simple sturtup like applications and agile developemt
@@ -359,6 +371,49 @@ Additionally, mentoring will include fundamental modules that can be chosen for 
 
     - Choose deployment approach and hosting options
     - Choose database and infrastructure required for development
-    - Implement CI/CD process for application MVP
-    - The result of this modulw should be working MVP application which can be continously delivered nd deployed
-    - Review code and deplyment manifests
+    - Define Sprint 0, 1 goals
+    - Define MVP goals
+    - Perform first deployment and MVP
+    - Continous code, manifests review and gaps capturing
+    - Review goals
+
+# Microservises Deep Dive (Variative Theoretical Module)
+
+Session: **Time: 2h**
+
+## Theory
+- [Microservises](https://en.wikipedia.org/wiki/Microservices) style overview and why do we need it?
+- Microservice style as software complexity management approach
+- Properties and typical approaches
+    - Service as a single structure unit which connected to other services
+    - Organized around business capabilities
+    - Technology agnostic
+    - Small size of services
+    - Messaging enabled
+    - [Bounded by context and relations with DDD](https://martinfowler.com/bliki/BoundedContext.html)
+    - Autonomous development
+    - Individually deployable
+- Benefits 
+    - (Complexity) Easy to implement and understand separate services and component
+    - (Integration) Can itegrate services with many other services
+    - (Scalability) Can be scaled independently 
+    - (Deployment) Can be deployed independently with fast timeto market
+    - (Low Coupling) Low coupling between services
+    - (Recilency) Fault Tolerance 
+- Conserns
+    - Cost of communication 
+    - Higer testing and deployment efforts
+    - Difficult responsibilities segregation
+    - Hard transactions management
+    - Required high engineering level of organization
+    - Required hard contracts negotiation 
+- Implementation of style: the main idea to use benefits and reduce negative effects
+    - [Fowler Characteristics](https://medium.com/design-microservices-architecture-with-patterns/top-10-characteristics-of-microservices-12b046a59bfc)
+- Tradeoffs
+
+**Links**
+- [Microservices in Amazon article](https://medium.com/design-microservices-architecture-with-patterns/top-10-characteristics-of-microservices-12b046a59bfc)
+- [Microservices style by Fowler](https://martinfowler.com/articles/microservices.html#CharacteristicsOfAMicroserviceArchitecture)
+
+
+
