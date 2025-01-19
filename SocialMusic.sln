@@ -11,7 +11,7 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SM.Home.UI", "src\SM.Home.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Channel.API", "src\SM.Channel.API\SM.Channel.API.csproj", "{DA74DBD6-8FA1-442C-B8AB-812F3F12C33A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.AuthorizationServer.API", "src\SM.AuthorizationServer.API\SM.AuthorizationServer.API.csproj", "{6309907F-24C4-44EB-9C1F-73E8112A6A10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Indetity.API", "src\SM.AuthorizationServer.API\SM.Indetity.API.csproj", "{6309907F-24C4-44EB-9C1F-73E8112A6A10}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.MusicPlayer.API", "src\SM.MusicPlayer.API\SM.MusicPlayer.API.csproj", "{10905768-A78A-498F-9091-5EE2FF41607A}"
 EndProject
@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9F00965A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Home.API.Tests", "tests\SM.Home.API.Tests\SM.Home.API.Tests.csproj", "{AF577583-BA0D-460F-BFCF-B1BBB4375C48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.AuthorizationServer.API.Tests", "tests\SM.AuthorizationServer.API.Tests\SM.AuthorizationServer.API.Tests.csproj", "{4E8F0B95-2A7F-411D-B3D0-7A890E9985F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Indetity.API.Tests", "tests\SM.AuthorizationServer.API.Tests\SM.Indetity.API.Tests.csproj", "{4E8F0B95-2A7F-411D-B3D0-7A890E9985F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Channel.API.Tests", "tests\SM.Channel.API.Tests\SM.Channel.API.Tests.csproj", "{F9DC67B1-E5CD-4439-87C6-7EDE7B6EC869}"
 EndProject
