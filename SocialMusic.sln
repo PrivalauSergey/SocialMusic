@@ -11,7 +11,7 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SM.Home.UI", "src\SM.Home.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Channel.API", "src\ChannelApi\SM.Channel.API\SM.Channel.API.csproj", "{DA74DBD6-8FA1-442C-B8AB-812F3F12C33A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Indentity.API", "src\IndentityApi\SM.Indentity.API\SM.Indentity.API.csproj", "{6309907F-24C4-44EB-9C1F-73E8112A6A10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Identity.API", "src\IdentityApi\SM.Identity.API\SM.Identity.API.csproj", "{6309907F-24C4-44EB-9C1F-73E8112A6A10}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.MusicPlayer.API", "src\MusicPlayerApi\SM.MusicPlayer.API\SM.MusicPlayer.API.csproj", "{10905768-A78A-498F-9091-5EE2FF41607A}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Chat.API", "src\ChatApi\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Home.API.Tests", "src\HomeApi\tests\SM.Home.API.Tests\SM.Home.API.Tests.csproj", "{AF577583-BA0D-460F-BFCF-B1BBB4375C48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Indentity.API.Tests", "src\IndentityApi\tests\SM.Indentity.API.Tests\SM.Indentity.API.Tests.csproj", "{4E8F0B95-2A7F-411D-B3D0-7A890E9985F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Identity.API.Tests", "src\IdentityApi\tests\SM.Identity.API.Tests\SM.Identity.API.Tests.csproj", "{4E8F0B95-2A7F-411D-B3D0-7A890E9985F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Channel.API.Tests", "src\ChannelApi\tests\SM.Channel.API.Tests\SM.Channel.API.Tests.csproj", "{F9DC67B1-E5CD-4439-87C6-7EDE7B6EC869}"
 EndProject
@@ -44,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatApi", "ChatApi", "{2461
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeApi", "HomeApi", "{CF246BE2-E9C1-4D8C-B211-2B9057B2DC20}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IndentityApi", "IndentityApi", "{4F4AA367-9E9C-454D-9BC4-1D72EF9FF237}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityApi", "IdentityApi", "{4F4AA367-9E9C-454D-9BC4-1D72EF9FF237}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicPlayerApi", "MusicPlayerApi", "{124F7E10-A290-4462-ADDF-3BB959E8F354}"
 EndProject

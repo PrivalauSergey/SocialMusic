@@ -18,7 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ChannelApi\SM.Channel.API\SM.Channel.API.csproj" />
     <ProjectReference Include="..\..\ChatApi\SM.Chat.API\SM.Chat.API.csproj" />
-    <ProjectReference Include="..\..\IndentityApi\SM.Indentity.API\SM.Indentity.API.csproj" />
+    <ProjectReference Include="..\..\IdentityApi\SM.Identity.API\SM.Identity.API.csproj" />
     <ProjectReference Include="..\..\MusicPlayerApi\SM.MusicPlayer.API\SM.MusicPlayer.API.csproj" />
   </ItemGroup>
 
