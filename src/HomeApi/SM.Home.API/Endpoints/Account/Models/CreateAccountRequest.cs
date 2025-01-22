@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace SM.Home.API.Endpoints.Account.Models
 {
-    public class AccountCreateRequest
+    public class CreateAccountRequest
     {
         [Required]
         [JsonPropertyName("username")]

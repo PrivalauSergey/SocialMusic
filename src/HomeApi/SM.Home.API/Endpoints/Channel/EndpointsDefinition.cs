@@ -1,31 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace SM.Home.API.Endpoints.Channel
 {
-    public class EndpointsDefinition : Controller
+    public static class EndpointsDefinition
     {
-        [HttpGet]
-        public IActionResult Get()
+        public static RouteGroupBuilder MapChannel(this IEndpointRouteBuilder endpoints)
         {
-            return View();
-        }
+            var group = endpoints.MapGroup("Channel")
+                .WithOpenApi()
+                .WithTags("User's Channel");
+            
+            group.MapPost("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK);
 
-        [HttpPost]
-        public IActionResult Create()
-        {
-            return View();
-        }
+            group.MapGet("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
 
-        [HttpPut]
-        public IActionResult Update()
-        {
-            return View();
-        }
+            group.MapPut("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
 
-        [HttpDelete]
-        public IActionResult Delete()
-        {
-            return View();
+            group.MapDelete("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+
+            return group;
         }
     }
 }

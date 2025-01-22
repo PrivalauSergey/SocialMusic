@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using SM.Home.API.Endpoints.Account.Models;
+using SM.Home.API.Services;
+using SM.Home.API.Shared;
+using LoginRequest = SM.Home.API.Endpoints.Account.Models.LoginRequest;
 
 namespace SM.Home.API.Endpoints.Account
 {
@@ -15,28 +17,51 @@ namespace SM.Home.API.Endpoints.Account
         {
             var group = endpoints.MapGroup("Accounts")
                 .WithOpenApi()
-                .WithTags("User accounts");
-        }
+                .WithTags("User's accounts");
 
-        /*private readonly IHttpClientFactory _httpClientFactory;
-
-        public EndpointsDefinition(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
-
-        [HttpPost("create-user")]
-        public async Task<IActionResult> CreateUser([FromBody] AccountCreateRequest userCreateRequest)
-        {
-            var httpClient = _httpClientFactory.CreateClient();
-            var response = await httpClient.PostAsJsonAsync("https://localhost:5001/api/account/create-user", userCreateRequest);
-
-            if (response.IsSuccessStatusCode)
+            group.MapPost("/create", async (
+                [FromBody] CreateAccountRequest account,
+                IAccountService accountService,
+                IValidator<CreateAccountRequest> validator,
+                HttpContext httpContext,
+                CancellationToken cancelationToken) =>
             {
-                return Ok(new { message = "User created successfully." });
-            }
+                var validationResult = validator.Validate(account);
+                if (!validationResult.IsValid)
+                {
+                    return Results.BadRequest(validationResult.ToResponse());
+                }
 
-            return BadRequest("Failed to create user.");
-        }*/
+                var response = await accountService.CreateAccount(account.Username, account.Password, account.Email);
+
+                return Results.Ok(response);
+            })
+             .AllowAnonymous()
+             .Produces(StatusCodes.Status201Created)
+             .Produces(StatusCodes.Status400BadRequest);
+
+            group.MapPost("/login", async (
+                [FromBody] LoginRequest login,
+                IAccountService accountService,
+                IValidator<LoginRequest> validator,
+                HttpContext httpContext,
+                CancellationToken cancelationToken) =>
+            {
+                var validationResult = validator.Validate(login);
+                if (!validationResult.IsValid)
+                {
+                    return Results.BadRequest(validationResult.ToResponse());
+                }
+
+                var response = await accountService.Login(login.Login, login.Password);
+
+                return Results.Ok(response);
+            })
+             .AllowAnonymous()
+             .Produces(StatusCodes.Status201Created)
+             .Produces(StatusCodes.Status400BadRequest);
+
+            return group;
+        }
     }
 }

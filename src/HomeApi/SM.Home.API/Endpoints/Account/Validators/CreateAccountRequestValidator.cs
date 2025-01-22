@@ -1,14 +1,12 @@
 ﻿using FluentValidation;
-using FluentValidation.Validators;
 using SM.Home.API.Endpoints.Account.Models;
 using SM.Home.API.Helpers;
-using System.Text.RegularExpressions;
 
 namespace SM.Home.API.Endpoints.Account.Validators
 {
-    public class AccountCreateRequestValidator : AbstractValidator<AccountCreateRequest>
+    public class CreateAccountRequestValidator : AbstractValidator<CreateAccountRequest>
     {
-        public AccountCreateRequestValidator()
+        public CreateAccountRequestValidator()
         {
             RuleFor(x => x.Username)
                 .NotEmpty()

@@ -2,12 +2,12 @@
 using SM.Home.API.Endpoints.Account.Models;
 using System.Threading.Tasks;
 
-namespace SM.Home.API.Services
+namespace SM.Home.API.Clients.IndentityClient
 {
-    public interface IAccountService
+    public interface IIdentityApiClient
     {
         public Task<CreateAccountModel> CreateAccount(string login, string password, string email);
 
-        Task<LoginResponse> Login(string login, string password);
+        public Task<LoginResponse> Login(string login, string password);
     }
 }
