@@ -8,7 +8,7 @@ namespace SM.Home.API.Endpoints.Health
     {
         public static RouteGroupBuilder MapHealth(this IEndpointRouteBuilder endpoints)
         {
-            var group = endpoints.MapGroup("health")
+            var group = endpoints.MapGroup("Health")
                 .WithOpenApi()
                 .WithTags("Health Endpoints");
 

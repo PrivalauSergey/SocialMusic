@@ -17,7 +17,7 @@ namespace SM.Home.API.Endpoints.Account
         {
             var group = endpoints.MapGroup("Accounts")
                 .WithOpenApi()
-                .WithTags("User's accounts");
+                .WithTags("User's Accounts");
 
             group.MapPost("/create", async (
                 [FromBody] CreateAccountRequest account,
