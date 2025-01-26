@@ -7,31 +7,32 @@ using Microsoft.AspNetCore.Routing;
 using SM.Home.API.Endpoints.Account.Models;
 using SM.Home.API.Services;
 using SM.Home.API.Shared;
+using LoginRequest = SM.Home.API.Endpoints.Account.Models.LoginRequest;
 
-namespace SM.Home.API.Endpoints.Account
+namespace SM.Home.API.Endpoints.Login
 {
     public static class EndpointsDefinition
     {
-        public static RouteGroupBuilder MapAccounts(this IEndpointRouteBuilder endpoints)
+        public static RouteGroupBuilder MapLogin(this IEndpointRouteBuilder endpoints)
         {
-            var group = endpoints.MapGroup("Accounts")
+            var group = endpoints.MapGroup("Login")
                 .WithOpenApi()
-                .WithTags("User's Accounts");
+                .WithTags("Log in");
 
             group.MapPost("/", async (
-                [FromBody] CreateAccountRequest account,
+                [FromBody] LoginRequest login,
                 IAccountService accountService,
-                IValidator<CreateAccountRequest> validator,
+                IValidator<LoginRequest> validator,
                 HttpContext httpContext,
                 CancellationToken cancelationToken) =>
             {
-                var validationResult = validator.Validate(account);
+                var validationResult = validator.Validate(login);
                 if (!validationResult.IsValid)
                 {
                     return Results.BadRequest(validationResult.ToResponse());
                 }
 
-                var response = await accountService.CreateAccount(account.Username, account.Password, account.Email);
+                var response = await accountService.Login(login.Login, login.Password);
 
                 return Results.Ok(response);
             })

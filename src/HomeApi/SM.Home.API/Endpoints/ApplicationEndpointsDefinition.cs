@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Routing;
 using SM.Home.API.Endpoints.Account;
 using SM.Home.API.Endpoints.Channel;
 using SM.Home.API.Endpoints.Health;
+using SM.Home.API.Endpoints.Login;
 using SM.Home.API.Filters;
 
 namespace SM.Home.API.Endpoints
@@ -17,6 +18,7 @@ namespace SM.Home.API.Endpoints
                 .AddEndpointFilter<SecurityHeadersEndpointFilter>();
             group.MapAccounts();
             group.MapChannel();
+            group.MapLogin();
 
             endpoints.MapHealth()
                 .WithHttpLogging(HttpLoggingFields.None);
