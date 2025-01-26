@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="login-header">
+     <div class="login-header-logo">
+        <img src="logo.ico" width="40" height="40" class="d-inline-block align-text-top" loading="lazy">
+     </div>
+     <div class="login-header-title-text">
+        Welcome
+     </div>
+     <div class="login-header-text">
+        Log in or sign up to continue
+     </div>
+    </div>
+    <div class="login-content">
+        <div class="login-form">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div>
+                    <input type="text" formControlName="username" placeholder="Enter Username or Email">
+                </div>
+                <div>
+                    <input type="password" formControlName="password" placeholder="Enter Password">
+                </div>
+                <button type="submit" class="button">Continue</button>
+            </form>
+        </div>
+        <div class="login-content-footer">
+            <label>OR</label>
+        </div>
+        <div class="login-content-integration">
+            <img class="login-content-integration-icon" src="google.icon" width="40" height="40" class="d-inline-block align-text-top" loading="lazy">>
+            <div class="login-content-integration-text">Google integration</div>
+        </div>
+    </div>
+    <div class="login-content-footer">
+        <div class="login-content-item">
+            <a href="">Sign up</a>
+        </div>
+    </div>
+</div>
