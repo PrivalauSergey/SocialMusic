@@ -1,42 +1,33 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-dark">
-  <div class="container-fluid ">
-    <li class="nav-item">
-      <a routerLink="/home"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-      class="nav-link">Home</a>
-    </li>
-    @if (this.isLoggedIn())
-    {
+<nav class="navbar-wrapper">
+  <div class="navbar-container">
+    <ul class="navbar-list">
       <li class="nav-item">
-        <a routerLink="/channel"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        class="nav-link">Channel</a>
+        <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link">Home</a>
       </li>
-    }
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto">
-        @if (this.isLoggedIn())
-        {
+      @if (isLoggedIn()) {
         <li class="nav-item">
-          <a routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          class="nav-link right"
-          (click)="logout()">Log Out</a>
+          <a routerLink="/channel" routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link">Channel</a>
         </li>
-        } @else {
-          <li class="nav-item">
-            <a routerLink="/login"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            class="nav-link right">Log in</a>
-          </li>
-        }
-      </ul>	  
-    </div>
+      }
+    </ul>
+    <ul class="navbar-list navbar-right">
+      @if (isLoggedIn()) {
+        <li class="nav-item">
+          <a routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link" (click)="logout()">Log Out</a>
+        </li>
+      } @else {
+        <li class="nav-item">
+          <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page" class="nav-link">Log in</a>
+        </li>
+      }
+    </ul>
   </div>
 </nav>
 
-<!-- The routed views render in the <router-outlet>-->
-  <router-outlet />
+<router-outlet />
+
+<footer class="footer">
+  <div class="footer-container">
+    <label class="footer-container-text">Designed by SM team</label>
+  </div>
+</footer>

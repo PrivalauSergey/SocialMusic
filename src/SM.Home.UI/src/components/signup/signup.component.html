@@ -1,1 +1,67 @@
-<p>signup works!</p>
+<div class="signup-container">
+    <div class="signup-header">
+     <div class="signup-header-logo">
+        <img src="logo.ico" width="40" height="40" class="d-inline-block align-text-top" loading="lazy">
+     </div>
+     <div class="signup-header-title-text">
+        Welcome
+     </div>
+     <div class="signup-header-text">
+        Sign up to continue
+     </div>
+    </div>
+    <div class="signup-content">
+    <div class="signup-form">
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <div>
+                <input type="text" id="username" formControlName="username" required placeholder="Enter Username" aria-label="Username">
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+                    <div *ngIf="username?.hasError('required')">
+                        Name is required.
+                    </div>
+                    <div *ngIf="username?.hasError('minlength')">
+                        Name must be at least 2 characters long.
+                    </div>
+                    <div *ngIf="username?.hasError('maxlength')">
+                        Name must be no longer than 15 characters long.
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="text" id="email" formControlName="email" required placeholder="Enter Email" aria-label="Email">
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+                    <div *ngIf="email?.hasError('required')">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email?.hasError('email')">
+                        Email incorrect format.
+                    </div>
+                    
+                </div>
+            </div>
+            <div>
+                <input type="password" id="password" formControlName="password" placeholder="Enter Password" aria-label="Password">
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+                    <div *ngIf="password?.hasError('required')">
+                        Password is required.
+                    </div>
+                    <div *ngIf="password?.hasError('minlength')">
+                        Password must be at least 6 characters long.
+                    </div>
+                    <div *ngIf="password?.hasError('noCapital')">
+                        Password must be at at least one capital symbol.
+                    </div>
+                    <div *ngIf="password?.hasError('noNonSymbol')">
+                        Password must be at at least one non symbol.
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="button" [disabled]="signupForm.invalid" aria-label="Continue to signup">Create</button>
+        </form>
+    </div>
+    <div class="signup-content-footer">
+        <div class="signup-content-item">
+            <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Log in</a>
+        </div>
+    </div>
+</div>
