@@ -8,6 +8,7 @@ using SM.Identity.API.Data;
 using SM.Identity.API.Services;
 using SM.Identity.API.Services.Interfaces;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using SM.Identity.API.Middlewares;
 
 namespace SM.Identity.API.Extensions
@@ -46,6 +47,13 @@ namespace SM.Identity.API.Extensions
             });
 
             builder.Services.AddControllers();
+
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.ReportApiVersions = true;
+            });
         }
 
         public static void RegisterMiddlewares(this WebApplication app)

@@ -6,7 +6,8 @@ using SM.Identity.API.Models.Account;
 namespace SM.Identity.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
