@@ -21,8 +21,6 @@ export class LoginComponent {
   loginForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(15)
     ]),
     password: new FormControl('', [
       Validators.required,
