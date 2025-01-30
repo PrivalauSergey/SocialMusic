@@ -1,4 +1,4 @@
-﻿namespace SM.Identity.API.Models
+﻿namespace SM.Identity.API.Models.Login
 {
     public class UserLoginRequest
     {

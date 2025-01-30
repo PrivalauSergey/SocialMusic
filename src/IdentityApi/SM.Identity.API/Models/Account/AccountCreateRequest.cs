@@ -1,6 +1,6 @@
-namespace SM.Identity.API.Models
+namespace SM.Identity.API.Models.Account
 {
-    public class UserCreateRequest
+    public class AccountCreateRequest
     {
         public string UserName { get; set; }
         public string Email { get; set; }

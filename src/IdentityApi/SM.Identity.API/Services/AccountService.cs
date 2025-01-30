@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using SM.Identity.API.Constants;
+using SM.Identity.API.Exceptions;
 using SM.Identity.API.Services.Interfaces;
 
 namespace SM.Identity.API.Services
@@ -20,7 +21,7 @@ namespace SM.Identity.API.Services
             _jwtService = jwtService;
         }
 
-        public async Task<string> CreateUserAsync(string userName, string email, string password)
+        public async Task<string> CreateAccountAsync(string userName, string email, string password)
         {
             await ValidateUserUniqueness(userName, email);
 
@@ -28,7 +29,7 @@ namespace SM.Identity.API.Services
             var result = await _userManager.CreateAsync(user, password);
             
             if (!result.Succeeded)
-                throw new InvalidOperationException("Failed to create user: " + string.Join(", ", result.Errors.Select(e => e.Description)));
+                throw new ValidationException("Failed to create user: " + string.Join(", ", result.Errors.Select(e => e.Description)));
 
             await EnsureRolesExistAndAssignUser(user);
             return await _jwtService.GenerateTokenAsync(user);
@@ -39,17 +40,17 @@ namespace SM.Identity.API.Services
             var user = await FindUserByLoginAsync(login);
 
             if (user == null)
-                throw new InvalidOperationException("Login failed: User not found");
+                throw new NotFoundException("Login failed: User not found");
 
             if (!await _userManager.CheckPasswordAsync(user, password))
-                throw new InvalidOperationException("Login failed: Incorrect password");
+                throw new NotFoundException("Login failed: Incorrect password");
 
             return await _jwtService.GenerateTokenAsync(user);
         }
 
         private async Task EnsureRolesExistAndAssignUser(IdentityUser user)
         {
-            var tasks = DefaultRoles.AllRoles.Select(async role =>
+            var tasks = Enum.GetNames(typeof(DefaultRoles)).Select(async role =>
             {
                 var roleExists = await _roleManager.RoleExistsAsync(role);
 
@@ -65,10 +66,10 @@ namespace SM.Identity.API.Services
         private async Task ValidateUserUniqueness(string userName, string email)
         {
             if (await _userManager.FindByNameAsync(userName) != null)
-                throw new ArgumentException($"User with the name `{userName}` already exists");
+                throw new ValidationException($"User with the name `{userName}` already exists");
 
             if (await _userManager.FindByEmailAsync(email) != null)
-                throw new ArgumentException($"User with the email `{email}` already exists");
+                throw new ValidationException($"User with the email `{email}` already exists");
         }
 
         private async Task<IdentityUser> FindUserByLoginAsync(string login)

@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using SM.Identity.API.Exceptions;
 
 namespace SM.Identity.API.Middlewares
 {
@@ -34,7 +35,13 @@ namespace SM.Identity.API.Middlewares
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            HttpStatusCode statusCode = HttpStatusCode.BadRequest;
+            var statusCode = exception switch
+            {
+                ValidationException _ => HttpStatusCode.BadRequest,
+                NotFoundException _ => HttpStatusCode.NotFound,
+                _ => HttpStatusCode.InternalServerError
+            };
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
 
@@ -55,7 +62,7 @@ namespace SM.Identity.API.Middlewares
             // Get a name of a class in which an exception occurred
             string source = enhancedStackTrace.Split()[4].Split('.')[^2];
 
-            _logger.LogError("\tExceptionType: {ExceptionType}\n\tMessage: {Message}\n\tSource: {Source}\n\tStackTrace: {StackTrace}",
+            _logger.LogError("\n\tExceptionType: {ExceptionType}\n\tMessage: {Message}\n\tSource: {Source}\n\tStackTrace: {StackTrace}",
                 ex.GetType(),
                 ex.Message,
                 source,

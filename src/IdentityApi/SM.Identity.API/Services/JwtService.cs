@@ -16,6 +16,10 @@ namespace SM.Identity.API.Services
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
 
+        private const string JwtKey = "Jwt:Key";
+        private const string JwtIssuer = "Jwt:Issuer";
+        private const string JwtAudience = "Jwt:Audience";
+
         public JwtService(UserManager<IdentityUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
@@ -52,9 +56,9 @@ namespace SM.Identity.API.Services
 
         private (byte[] SecretKey, string Issuer, string Audience) GetTokenParts()
         {
-            var secretKey = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-            var issuer = _configuration["Jwt:Issuer"];
-            var audience = _configuration["Jwt:Audience"];
+            var secretKey = Encoding.ASCII.GetBytes(_configuration[JwtKey]);
+            var issuer = _configuration[JwtIssuer];
+            var audience = _configuration[JwtAudience];
 
             return (secretKey, issuer, audience);
         }
