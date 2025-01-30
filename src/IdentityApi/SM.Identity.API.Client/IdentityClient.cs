@@ -18,7 +18,6 @@ namespace SM.Identity.API.Client
         {
             var content = new StringContent(JsonConvert.SerializeObject(createRequest), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("/api/v1/account/accounts", content);
-            response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
             
             return JsonConvert.DeserializeObject<AccountCreateResponse>(responseContent);
@@ -28,7 +27,6 @@ namespace SM.Identity.API.Client
         {
             var content = new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("/api/v1/token/login", content);
-            response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
             
             return JsonConvert.DeserializeObject<UserLoginResponse>(responseContent);
