@@ -2,6 +2,6 @@
 {
     public class CreateAccountModel
     {
-        public string JwtToken { get; set; }
+        public string Token { get; set; }
     }
 }

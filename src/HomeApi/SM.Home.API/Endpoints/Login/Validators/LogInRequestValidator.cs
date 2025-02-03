@@ -10,9 +10,7 @@ namespace SM.Home.API.Endpoints.Account.Validators
         public LogInRequestValidator()
         {
             RuleFor(x => x.Login)
-                .NotEmpty()
-                .MinimumLength(2)
-                .MaximumLength(15);
+                .NotEmpty();
 
             RuleFor(x => x.Password)
                 .NotEmpty();

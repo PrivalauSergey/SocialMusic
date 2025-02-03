@@ -8,7 +8,7 @@ namespace SM.Home.API.Clients.IndentityClient
     {
         public async Task<CreateAccountModel> CreateAccount(string login, string password, string email)
         {
-            return await Task.FromResult(new CreateAccountModel());
+            return await Task.FromResult(new CreateAccountModel { Token = "token" });
         }
 
         public async Task<LoginResponse> Login(string login, string password)
