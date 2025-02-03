@@ -1,27 +1,32 @@
-﻿using SM.Home.API.Clients.IndentityClient;
-using SM.Home.API.Clients.IndentityClient.Models;
-using SM.Home.API.Endpoints.Account.Models;
+﻿using SM.Identity.API.Client;
+using SM.Identity.API.Client.Models;
+using SM.Identity.API.Client.Models.Account;
+using SM.Identity.API.Client.Models.Login;
 using System.Threading.Tasks;
 
 namespace SM.Home.API.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IIdentityApiClient _indetityApiClient;
+        private readonly IIdentityClient _indetityClient;
 
-        public AccountService(IIdentityApiClient indetityApiClient)
+        public AccountService(IIdentityClient indetityApiClient)
         {
-            _indetityApiClient = indetityApiClient;
+            _indetityClient = indetityApiClient;
         }
 
-        public async Task<CreateAccountModel> CreateAccount(string login, string password, string email)
+        public async Task<AccountCreateResponse> CreateAccount(string login, string password, string email)
         {
-            return await _indetityApiClient.CreateAccount(login, password, email);
+            var accountRequest = new AccountCreateRequest { UserName = login, Password = password, Email = email };
+
+            return await _indetityClient.CreateAccount(accountRequest);
         }
 
-        public async Task<LoginResponse> Login(string login, string password)
+        public async Task<UserLoginResponse> Login(string login, string password)
         {
-            return await _indetityApiClient.Login(login, password);
+            var userLoginRequest = new UserLoginRequest { Login = login, Password = password };
+
+            return await _indetityClient.Login(userLoginRequest);
         }
     }
 }
