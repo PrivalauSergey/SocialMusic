@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Builder;
+using SM.Identity.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.RegisterServices();
+
 var app = builder.Build();
-
-
-app.MapGet("/", () => "Hello world");
+app.RegisterMiddlewares();
 
 app.Run();
