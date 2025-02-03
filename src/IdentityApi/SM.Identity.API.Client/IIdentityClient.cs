@@ -6,7 +6,7 @@ namespace SM.Identity.API.Client
 {
     public interface IIdentityClient
     {
-        Task<ApiResponse> CreateAccount(AccountCreateRequest createRequest);
-        Task<ApiResponse> Login(UserLoginRequest loginRequest);
+        Task<AccountCreateResponse> CreateAccount(AccountCreateRequest createRequest);
+        Task<UserLoginResponse> Login(UserLoginRequest loginRequest);
     }
 }

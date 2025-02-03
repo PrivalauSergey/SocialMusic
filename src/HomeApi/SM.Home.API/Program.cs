@@ -5,12 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SM.Home.API.Clients.IndentityClient;
 using SM.Home.API.Configurations;
 using SM.Home.API.Endpoints;
 using SM.Home.API.Endpoints.Account.Models;
 using SM.Home.API.Endpoints.Account.Validators;
 using SM.Home.API.Services;
+using Tabasco.Scheduler.ApiClient;
 
 namespace SM.Home.API
 {
@@ -61,7 +61,7 @@ namespace SM.Home.API
             services.AddSingleton<IValidator<LoginRequest>, LogInRequestValidator>();
 
             // Clients
-            services.AddSingleton<IIdentityApiClient, IdentityApiClientMock>();
+            services.AddIdentityClient(settings.IdentityClientSettings);
 
 
             var app = builder.Build();

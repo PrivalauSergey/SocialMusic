@@ -15,28 +15,32 @@ namespace SM.Identity.API.Client
             _httpClient = httpClient;
         }
 
-        public async Task<ApiResponse> CreateAccount(AccountCreateRequest createRequest)
+        public async Task<AccountCreateResponse> CreateAccount(AccountCreateRequest createRequest)
         {
             var content = new StringContent(JsonConvert.SerializeObject(createRequest), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("/api/v1/account/accounts", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
-            if (!response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ExceptionResponse>(responseContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<AccountCreateResponse>(responseContent);
+            }
 
-            return JsonConvert.DeserializeObject<AccountCreateResponse>(responseContent);
+            return null;
         }
 
-        public async Task<ApiResponse> Login(UserLoginRequest loginRequest)
+        public async Task<UserLoginResponse> Login(UserLoginRequest loginRequest)
         {
             var content = new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("/api/v1/token/login", content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
-            if (!response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ExceptionResponse>(responseContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<UserLoginResponse>(responseContent);
+            }
 
-            return JsonConvert.DeserializeObject<UserLoginResponse>(responseContent);
+            return null;
         }
     }
 }
