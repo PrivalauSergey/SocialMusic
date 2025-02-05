@@ -10,15 +10,24 @@ namespace SM.Home.API.Endpoints.Channel
         {
             var group = endpoints.MapGroup("Channel")
                 .WithOpenApi()
-                .WithTags("User's Channel");
+                .WithTags("User's Channel")
+                .RequireAuthorization("User", "ChannelAdmin");
             
-            group.MapPost("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK);
+            group.MapPost("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized);
 
-            group.MapGet("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+            group.MapGet("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized);
 
-            group.MapPut("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+            group.MapPut("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized);
 
-            group.MapDelete("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+            group.MapDelete("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized);
 
             return group;
         }

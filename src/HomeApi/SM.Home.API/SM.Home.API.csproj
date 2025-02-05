@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Constants\**" />
     <Compile Remove="Orchestrators\**" />
+    <Content Remove="Constants\**" />
     <Content Remove="Orchestrators\**" />
+    <EmbeddedResource Remove="Constants\**" />
     <EmbeddedResource Remove="Orchestrators\**" />
+    <None Remove="Constants\**" />
     <None Remove="Orchestrators\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Constants\" />
   </ItemGroup>
 
   <ItemGroup>
