@@ -11,23 +11,27 @@ namespace SM.Home.API.Endpoints.Channel
             var group = endpoints.MapGroup("Channel")
                 .WithOpenApi()
                 .WithTags("User's Channel")
-                .RequireAuthorization("User", "ChannelAdmin");
-            
+                .RequireAuthorization("User");
+
             group.MapPost("/", () => { return Results.Ok(); })
                 .Produces(StatusCodes.Status200OK)
-                .Produces(StatusCodes.Status401Unauthorized);
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
             group.MapGet("/", () => { return Results.Ok(); })
                 .Produces(StatusCodes.Status200OK)
-                .Produces(StatusCodes.Status401Unauthorized);
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
             group.MapPut("/", () => { return Results.Ok(); })
                 .Produces(StatusCodes.Status200OK)
-                .Produces(StatusCodes.Status401Unauthorized);
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
             group.MapDelete("/", () => { return Results.Ok(); })
                 .Produces(StatusCodes.Status200OK)
-                .Produces(StatusCodes.Status401Unauthorized);
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
             return group;
         }

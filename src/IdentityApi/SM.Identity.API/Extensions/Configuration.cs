@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
 using Duende.IdentityServer.Services;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.IO;
+using static Duende.IdentityServer.IdentityServerConstants;
 
 namespace SM.Identity.API.Extensions
 {
@@ -26,8 +29,11 @@ namespace SM.Identity.API.Extensions
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            var rsa = RSA.Create();
+            rsa.ImportFromPem(File.ReadAllText(@"Certs/private_key.pem"));
+
             builder.Services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
+                .AddSigningCredential(new RsaSecurityKey(rsa), RsaSigningAlgorithm.RS512)
                 .AddInMemoryIdentityResources(IdentityApiScopeConfiguration.IdentityResources)
                 .AddInMemoryApiScopes(IdentityApiScopeConfiguration.ApiScopes)
                 .AddInMemoryClients(IdentityApiScopeConfiguration.Clients)

@@ -2,6 +2,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,6 +15,8 @@ using SM.Home.API.Endpoints.Account.Models;
 using SM.Home.API.Endpoints.Account.Validators;
 using SM.Home.API.Services;
 using System;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using Tabasco.Scheduler.ApiClient;
 
@@ -42,6 +45,9 @@ namespace SM.Home.API
             var settings = new ApplicationSettings();
             builder.Configuration.Bind(settings);
 
+            var rsa = RSA.Create();
+            rsa.ImportFromPem(File.ReadAllText(@"Certs/public_key.pem"));
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -58,14 +64,14 @@ namespace SM.Home.API
                     ValidAudience = "api",
                     ValidIssuer = "http://localhost:8081",
                     ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.SecretKey))
+                    IssuerSigningKey = new RsaSecurityKey(rsa)
                 };
             });
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("User", policy => policy.RequireClaim("role", "User"));
-                options.AddPolicy("ChannelAdmin", policy => policy.RequireClaim("role", "ChannelAdmin"));
+                options.AddPolicy("User", policy => policy.RequireRole("User"));
+                options.AddPolicy("ChannelAdmin", policy => policy.RequireRole("ChannelAdmin"));
             });
 
             services.AddSwaggerGen(opt =>
@@ -131,9 +137,6 @@ namespace SM.Home.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth API v1"));
             }
-
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
 
             app.UseAuthentication();
             app.UseAuthorization();

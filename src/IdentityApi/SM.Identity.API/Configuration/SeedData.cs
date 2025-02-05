@@ -31,7 +31,6 @@ namespace SM.Identity.API.Configuration
             {
                 await userManager.CreateAsync(user, "Password123!");
                 await userManager.AddToRoleAsync(user, "User");
-                await userManager.AddToRoleAsync(user, "ChannelAdmin");
             }
 
             var admin = new IdentityUser
