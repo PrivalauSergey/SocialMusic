@@ -7,14 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Constants\**" />
     <Compile Remove="Orchestrators\**" />
+    <Content Remove="Constants\**" />
     <Content Remove="Orchestrators\**" />
+    <EmbeddedResource Remove="Constants\**" />
     <EmbeddedResource Remove="Orchestrators\**" />
+    <None Remove="Constants\**" />
     <None Remove="Orchestrators\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
+    <None Remove="Certs\public_key.pem" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +30,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\IdentityApi\SM.Identity.API.Client\SM.Identity.API.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Certs\public_key.pem">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
