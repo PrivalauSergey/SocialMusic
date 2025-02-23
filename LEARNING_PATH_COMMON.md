@@ -530,5 +530,48 @@ Session: **Time: 1.5h**
 **Books**
 - [Microservices patterns](https://microservices.io/book)
 
+# Additional modules
+
+Additional theoretical modules to close gaps in mentee knowledge
+
+## Garbage Collection Implementation .Net Core
+
+- Basic Memory Management .NET and CLR
+    - Memory management evolution history
+    - Resources maangement approach
+        - Memory
+        - CPU (how to make code architecture independent)
+        - I/O operations (Files, Networks, etc)
+    - Unmanged and Managed memory approach (C#, C, C++)
+- Classic Garbage Collection in .NET
+    - .NET Heap Types Summary
+        | **Heap Type**                    | **Purpose**                               | **Key Features**                                    | **Common Issues**                                  |
+        |----------------------------------|--------------------------------|--------------------------------------------------|------------------------------------------------|
+        | **Small Object Heap (SOH)**      | Stores small objects (<85KB)   | Generational GC (Gen0, Gen1, Gen2)              | Frequent GC pauses if excessive short-lived objects |
+        | **Large Object Heap (LOH)**      | Stores large objects (>85KB)   | Full GC collections, on-demand compaction in .NET 7+ | Memory fragmentation if objects are frequently allocated/released |
+        | **Pinned Object Heap (POH)**     | Stores pinned objects (interop) | Objects remain in place, reducing fragmentation | Inefficient memory use if overused |
+        | **High-Frequency Heap (Thread-Local Heaps)** | Optimized for multi-threaded workloads | Reduces contention, per-thread allocations | Higher memory usage if too many threads allocate memory |
+        | **Native Heap (Unmanaged Memory)** | Stores native (C/C++) allocations | Must be manually freed, used for interop | Memory leaks if not managed properly |
+    - High frequency Heap
+        - Stores .NET service information like method tables, etc
+    - Optimizations of GC
+        - GC Compact, use generations
+        - Server and Workstation GC
+| Feature          | **Workstation GC** 🖥️ | **Server GC** 🔄 |
+|----------------|-------------------|-------------------|
+| **Threading Model** | Single-threaded GC | Multi-threaded GC (one per core) |
+| **Performance** | Optimized for low-latency, UI responsiveness | Optimized for high-throughput, parallel processing |
+| **Concurrent GC** | Enabled by default | Can be enabled (improves latency) |
+| **Scalability** | Best for single-threaded apps | Best for multi-threaded, high-core systems |
+| **Memory Usage** | Lower memory footprint | Higher memory usage (pre-allocates memory per core) |
+| **Best For** | GUI apps (WinForms, WPF), low-latency apps | ASP.NET Core, web APIs, cloud, microservices |
+        - Large Object Heap Implementation
+        - Tiered Compilation
+        - Eager Compaction of the Large Object Heap (LOH)
+        - Heuristic optimization
+    - How to determine when to start GC?
+    - Finalization
+        - How does finalizer executed?
+        - How to use IDisposable for optimization
 
 
