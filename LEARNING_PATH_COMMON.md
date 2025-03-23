@@ -377,6 +377,79 @@ Practice: **Continous not time limitation**
     - Continous code, manifests review and gaps capturing
     - Review goals
 
+# API Best Practices (Variative Theoretical Module)
+
+Session: **Time: 1h**
+
+## Theory
+- Introduction to APIs
+    - What is an API?
+    - Categories of APIs (REST, GraphQL, SOAP, WebSockets, etc.)
+
+- History of APIs & Evolution of Technologies
+    - Early APIs (1960s–1980s)
+        - Concept of subroutines & function libraries
+        - RPC (Remote Procedure Call) in early computing
+        - Unix system calls as an early form of APIs
+
+    - The Rise of Web APIs (1990s–2000s)
+        - SOAP (1998) – XML-based, enterprise adoption
+        - REST (2000) – Roy Fielding’s dissertation, lightweight alternative
+        - XML-RPC & JSON-RPC – Simplifying API communication
+
+    - Modern APIs & Microservices Era (2010s–Present)
+        - GraphQL (2015) – Facebook’s solution for flexible queries
+        - WebSockets & Real-time APIs – Enabling two-way communication
+        - gRPC (2016) – Google’s efficient, binary protocol for microservices
+- REST API Core Principles
+- REST API Issues and Limitations
+    - Limited queries capabilities
+        - Over-fetching: The client receives more data than needed, increasing payload size.
+        - Under-fetching: The client receives less data than required, leading to multiple API calls.
+    - Lack of Real-Time Communication
+        - REST is request-response based, meaning the client must request data, even if nothing has changed.
+        - Problem: Not efficient for real-time applications (e.g., chat apps, stock market updates).
+    - Stateless Nature Causes Redundant Data Transfers
+        - REST APIs are stateless (each request is independent), meaning authentication and session data must be sent on every request.
+        - In high-frequency requests, this increases bandwidth usage and slows down performance
+    - HTTP Methods Have Limitations
+        - Protocol limitation
+    - Security Challenges
+        - Web based attacks
+    - Not Ideal for Microservices Communication
+        - Too chatty
+- REST API Best Practices
+    - Exception and error handling options
+    - Meaningful resources identifiers
+    - Use correct HTTP Methods
+        - PUT vs PATCH for partial and full updates
+        - DELETE vs POST for batch deletes
+    - Bulk API
+    - Versioning approach
+        - URI base versioning
+        - Headers based versioning
+    - HATEOAS concept
+    - Cache Responses for Better Performance
+    - Implement Rate Limiting & Throttling & Security
+    - Optimize Performance with Gzip Compression
+- API Management tools and approaches
+    - Azure API Management
+    - Kong
+    - Mulesoft
+
+**Links**
+- [What is API?](https://en.wikipedia.org/wiki/API)
+- [Categories of API](https://melihsahtiyan.medium.com/what-are-the-types-of-apis-how-does-rest-soap-graphql-works-e135509e9021)
+- [Evolution of API](https://medium.com/@keployio/the-evolution-of-apis-a-historical-perspective-fbf4bf765462)
+- [SOAP vs REST](https://aws.amazon.com/compare/the-difference-between-soap-rest/)
+- [XML-RPC & JSON-RPC](https://en.wikipedia.org/wiki/JSON-RPC)
+- [REST Design Principles MS](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
+- [REST API Design](https://en.wikipedia.org/wiki/REST)
+- [HATEOAS] (https://en.wikipedia.org/wiki/HATEOAS)
+
+## Practice
+    - Develope API for the project
+
 # Microservises Deep Dive Part 1 (Variative Theoretical Module)
 
 Session: **Time: 1.5h**
@@ -457,5 +530,48 @@ Session: **Time: 1.5h**
 **Books**
 - [Microservices patterns](https://microservices.io/book)
 
+# Additional modules
+
+Additional theoretical modules to close gaps in mentee knowledge
+
+## Garbage Collection Implementation .Net Core
+
+- Basic Memory Management .NET and CLR
+    - Memory management evolution history
+    - Resources maangement approach
+        - Memory
+        - CPU (how to make code architecture independent)
+        - I/O operations (Files, Networks, etc)
+    - Unmanged and Managed memory approach (C#, C, C++)
+- Classic Garbage Collection in .NET
+    - .NET Heap Types Summary
+        | **Heap Type**                    | **Purpose**                               | **Key Features**                                    | **Common Issues**                                  |
+        |----------------------------------|--------------------------------|--------------------------------------------------|------------------------------------------------|
+        | **Small Object Heap (SOH)**      | Stores small objects (<85KB)   | Generational GC (Gen0, Gen1, Gen2)              | Frequent GC pauses if excessive short-lived objects |
+        | **Large Object Heap (LOH)**      | Stores large objects (>85KB)   | Full GC collections, on-demand compaction in .NET 7+ | Memory fragmentation if objects are frequently allocated/released |
+        | **Pinned Object Heap (POH)**     | Stores pinned objects (interop) | Objects remain in place, reducing fragmentation | Inefficient memory use if overused |
+        | **High-Frequency Heap (Thread-Local Heaps)** | Optimized for multi-threaded workloads | Reduces contention, per-thread allocations | Higher memory usage if too many threads allocate memory |
+        | **Native Heap (Unmanaged Memory)** | Stores native (C/C++) allocations | Must be manually freed, used for interop | Memory leaks if not managed properly |
+    - High frequency Heap
+        - Stores .NET service information like method tables, etc
+    - Optimizations of GC
+        - GC Compact, use generations
+        - Server and Workstation GC
+| Feature          | **Workstation GC** 🖥️ | **Server GC** 🔄 |
+|----------------|-------------------|-------------------|
+| **Threading Model** | Single-threaded GC | Multi-threaded GC (one per core) |
+| **Performance** | Optimized for low-latency, UI responsiveness | Optimized for high-throughput, parallel processing |
+| **Concurrent GC** | Enabled by default | Can be enabled (improves latency) |
+| **Scalability** | Best for single-threaded apps | Best for multi-threaded, high-core systems |
+| **Memory Usage** | Lower memory footprint | Higher memory usage (pre-allocates memory per core) |
+| **Best For** | GUI apps (WinForms, WPF), low-latency apps | ASP.NET Core, web APIs, cloud, microservices |
+        - Large Object Heap Implementation
+        - Tiered Compilation
+        - Eager Compaction of the Large Object Heap (LOH)
+        - Heuristic optimization
+    - How to determine when to start GC?
+    - Finalization
+        - How does finalizer executed?
+        - How to use IDisposable for optimization
 
 
