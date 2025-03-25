@@ -1,5 +1,6 @@
-﻿using System.Text;
-using Newtonsoft.Json;
+﻿using System.Net;
+using System.Text;
+using System.Text.Json;
 using SM.Identity.API.Client.Models;
 using SM.Identity.API.Client.Models.Account;
 using SM.Identity.API.Client.Models.Login;
@@ -15,32 +16,46 @@ namespace SM.Identity.API.Client
             _httpClient = httpClient;
         }
 
-        public async Task<AccountCreateResponse> CreateAccount(AccountCreateRequest createRequest)
+        public async Task<ApiResponse<AccountCreateResponse>> CreateAccount(AccountCreateRequest createRequest)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(createRequest), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(createRequest), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("/api/v1/account/accounts", content);
-            var responseContent = await response.Content.ReadAsStringAsync();
+            
+            var result = new ApiResponse<AccountCreateResponse>
+            {
+                StatusCode = response.StatusCode,
+                Data = null
+            };
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<AccountCreateResponse>(responseContent);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                result.Data = JsonSerializer.Deserialize<AccountCreateResponse>(responseContent);
+                return result;
             }
 
-            return null;
+            return result;
         }
 
-        public async Task<UserLoginResponse> Login(UserLoginRequest loginRequest)
+        public async Task<ApiResponse<UserLoginResponse>> Login(UserLoginRequest loginRequest)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(loginRequest), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("/api/v1/token/login", content);
-            var responseContent = await response.Content.ReadAsStringAsync();
+
+            var result = new ApiResponse<UserLoginResponse>
+            {
+                StatusCode = response.StatusCode,
+                Data = null
+            };
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<UserLoginResponse>(responseContent);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                result.Data = JsonSerializer.Deserialize<UserLoginResponse>(responseContent);
+                return result;
             }
 
-            return null;
+            return result;
         }
     }
 }

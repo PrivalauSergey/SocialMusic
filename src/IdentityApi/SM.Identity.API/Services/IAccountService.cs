@@ -4,11 +4,11 @@ using SM.Identity.API.Models.Account;
 using SM.Identity.API.Models.Login;
 using System.Threading.Tasks;
 
-namespace SM.Identity.API.Services.Interfaces
+namespace SM.Identity.API.Services
 {
     public interface IAccountService
     {
         Task<ApiResponse<AccountCreateResponse>> CreateAccountAsync(string userName, string email, string password);
-        Task<ApiResponse<UserLoginResponse>> LoginAsync(string userName, string password);
+        Task<ApiResponse<UserLoginResponse>> LoginByNameOrEmailAsync(string userName, string password);
     }
 }

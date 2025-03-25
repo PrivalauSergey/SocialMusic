@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SM.Identity.API.Models.Login;
-using SM.Identity.API.Services.Interfaces;
+using SM.Identity.API.Services;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -20,7 +20,7 @@ namespace SM.Identity.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequest loginRequest)
         {
-            var response = await _accountService.LoginAsync(loginRequest.Login, loginRequest.Password);
+            var response = await _accountService.LoginByNameOrEmailAsync(loginRequest.Login, loginRequest.Password);
             return response.StatusCode switch
             {
                 HttpStatusCode.OK => Ok(response.Data),

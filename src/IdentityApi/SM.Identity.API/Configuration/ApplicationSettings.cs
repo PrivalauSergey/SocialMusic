@@ -1,7 +1,11 @@
-﻿namespace SM.Identity.API.Configuration
+﻿using SM.Home.API.Configurations;
+
+namespace SM.Identity.API.Configuration
 {
     public class ApplicationSettings
     {
-        public string SecretKey { get; set; }
+        public ApiConfigurations ApiConfigurations { get; set; }
+
+        public string PrivateKey { get; set; }
     }
 }

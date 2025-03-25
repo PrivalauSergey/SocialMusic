@@ -46,7 +46,7 @@ namespace SM.Home.API
             builder.Configuration.Bind(settings);
 
             var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText(@"Certs/public_key.pem"));
+            rsa.ImportFromPem(settings.IdentityClientSettings.PublicKey);
 
             services.AddAuthentication(options =>
             {
@@ -55,14 +55,14 @@ namespace SM.Home.API
             })
             .AddJwtBearer(options =>
             {
-                options.Authority = "http://localhost:8081";
+                options.Authority = settings.IdentityClientSettings.ClientUrl;
                 options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidAudience = "api",
-                    ValidIssuer = "http://localhost:8081",
+                    ValidIssuer = settings.IdentityClientSettings.ClientUrl,
                     ValidateLifetime = true,
                     IssuerSigningKey = new RsaSecurityKey(rsa)
                 };

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using SM.Identity.API.Services.Interfaces;
 using SM.Identity.API.Models.Account;
 using System.Net;
 using Microsoft.AspNetCore.Http.HttpResults;
+using SM.Identity.API.Services;
 
 namespace SM.Identity.API.Controllers
 {

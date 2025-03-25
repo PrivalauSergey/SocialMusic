@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SM.Identity.API.Data;
 using SM.Identity.API.Services;
-using SM.Identity.API.Services.Interfaces;
 using SM.Identity.API.Middlewares;
 using SM.Identity.API.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,6 +14,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 using static Duende.IdentityServer.IdentityServerConstants;
+using Microsoft.Extensions.Configuration;
 
 namespace SM.Identity.API.Extensions
 {
@@ -22,29 +22,35 @@ namespace SM.Identity.API.Extensions
     {
         public static async Task RegisterServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            var services = builder.Services;
+
+            services.Configure<ApplicationSettings>(builder.Configuration);
+            var settings = new ApplicationSettings();
+            builder.Configuration.Bind(settings);
+
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase("IdentityDb"));
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText(@"Certs/private_key.pem"));
+            rsa.ImportFromPem(settings.PrivateKey);
 
-            builder.Services.AddIdentityServer()
+            services.AddIdentityServer()
                 .AddSigningCredential(new RsaSecurityKey(rsa), RsaSigningAlgorithm.RS512)
                 .AddInMemoryIdentityResources(IdentityApiScopeConfiguration.IdentityResources)
                 .AddInMemoryApiScopes(IdentityApiScopeConfiguration.ApiScopes)
                 .AddInMemoryClients(IdentityApiScopeConfiguration.Clients)
                 .AddProfileService<ProfileService<IdentityUser>>();
 
-            builder.Services.AddTransient<IProfileService, ProfileService<IdentityUser>>();
+            services.AddTransient<IProfileService, ProfileService<IdentityUser>>();
 
             // Add services
-            builder.Services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IAccountService, AccountService>();
 
-            builder.Services.AddControllers();
+            services.AddControllers();
 
             var app = builder.Build();
 

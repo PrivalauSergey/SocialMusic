@@ -15,14 +15,14 @@ namespace SM.Home.API.Services
             _indetityClient = indetityApiClient;
         }
 
-        public async Task<AccountCreateResponse> CreateAccount(string login, string password, string email)
+        public async Task<ApiResponse<AccountCreateResponse>> CreateAccount(string login, string password, string email)
         {
             var accountRequest = new AccountCreateRequest { UserName = login, Password = password, Email = email };
 
             return await _indetityClient.CreateAccount(accountRequest);
         }
 
-        public async Task<UserLoginResponse> Login(string login, string password)
+        public async Task<ApiResponse<UserLoginResponse>> Login(string login, string password)
         {
             var userLoginRequest = new UserLoginRequest { Login = login, Password = password };
 
