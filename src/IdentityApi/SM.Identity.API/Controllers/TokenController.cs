@@ -20,7 +20,11 @@ namespace SM.Identity.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequest loginRequest)
         {
-            var response = await _accountService.LoginByNameOrEmailAsync(loginRequest.Login, loginRequest.Password);
+            var response = await _accountService.LoginByNameOrEmailAsync(
+                loginRequest.Login,
+                loginRequest.EncrryptPassword,
+                loginRequest.IvHex);
+
             return response.StatusCode switch
             {
                 HttpStatusCode.OK => Ok(response.Data),

@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
@@ -33,8 +37,14 @@ namespace SM.Identity.API.Services
             _tokenCreationService = tokenCreationService;
         }
 
-        public async Task<ApiResponse<AccountCreateResponse>> CreateAccountAsync(string username, string email, string password)
+        public async Task<ApiResponse<AccountCreateResponse>> CreateAccountAsync(
+            string username,
+            string email,
+            string encrryptPassword,
+            string ivHex)
         {
+            var password = Decrypt(encrryptPassword, ivHex);
+
             var user = new IdentityUser { UserName = username, Email = email };
             var result = await _userManager.CreateAsync(user, password);
 
@@ -58,8 +68,13 @@ namespace SM.Identity.API.Services
             };
         }
 
-        public async Task<ApiResponse<UserLoginResponse>> LoginByNameOrEmailAsync(string login, string password)
+        public async Task<ApiResponse<UserLoginResponse>> LoginByNameOrEmailAsync(
+            string login,
+            string encrryptPassword,
+            string ivHex)
         {
+            var password = Decrypt(encrryptPassword, ivHex);
+
             var identityUser = await _userManager.FindByNameAsync(login) ?? await _userManager.FindByEmailAsync(login);
 
             if (identityUser == null)
@@ -118,6 +133,39 @@ namespace SM.Identity.API.Services
             // Generate the token
             var token = await _tokenCreationService.CreateTokenAsync(tokenDescriptor);
             return token;
+        }
+
+        private string Decrypt(string cipherText, string ivHex)
+        {
+            try
+            {
+                using var aes = Aes.Create();
+                aes.Key = Convert.FromBase64String(_apiConfigrations.Value.SecureKey);
+                aes.IV = HexToBytes(ivHex);
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Mode = CipherMode.CBC;
+
+                using var decryptor = aes.CreateDecryptor();
+                using var ms = new MemoryStream(Convert.FromBase64String(cipherText));
+                using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
+                using var reader = new StreamReader(cs);
+
+                return reader.ReadToEnd();
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        private static byte[] HexToBytes(string hex)
+        {
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < hex.Length; i += 2)
+            {
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            }
+            return bytes;
         }
     }
 }

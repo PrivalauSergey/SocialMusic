@@ -12,7 +12,7 @@ namespace SM.Home.API.Endpoints.Account.Validators
             RuleFor(x => x.Login)
                 .NotEmpty();
 
-            RuleFor(x => x.Password)
+            RuleFor(x => x.EncryptedPassword)
                 .NotEmpty();
         }
     }

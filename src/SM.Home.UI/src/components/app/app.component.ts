@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/authorization-service/auth.service';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +12,11 @@ import { AuthService } from '../../services/authorization-service/auth.service';
 })
 
 export class AppComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    if(environment.env === 'development') {
+      console.log("dev env");
+    };
+  }
 
   title = 'Social Music';
 

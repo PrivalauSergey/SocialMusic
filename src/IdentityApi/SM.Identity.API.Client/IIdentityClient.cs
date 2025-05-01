@@ -1,6 +1,6 @@
-﻿using SM.Identity.API.Client.Models;
-using SM.Identity.API.Client.Models.Account;
+﻿using SM.Identity.API.Client.Models.Account;
 using SM.Identity.API.Client.Models.Login;
+using System.Threading.Tasks;
 
 namespace SM.Identity.API.Client
 {

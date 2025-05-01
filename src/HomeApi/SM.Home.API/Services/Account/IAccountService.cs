@@ -10,8 +10,15 @@ namespace SM.Home.API.Services
 {
     public interface IAccountService
     {
-        public Task<ApiResponse<AccountCreateResponse>> CreateAccount(string login, string password, string email);
+        Task<ApiResponse<AccountCreateResponse>> CreateAccount(
+            string login,
+            string password,
+            string email,
+            string ivHex);
 
-        public Task<ApiResponse<UserLoginResponse>> Login(string login, string password);
+        Task<ApiResponse<UserLoginResponse>> Login(
+            string login,
+            string password,
+            string ivHex);
     }
 }

@@ -7,5 +7,7 @@ namespace SM.Identity.API.Configuration
         public ApiConfigurations ApiConfigurations { get; set; }
 
         public string PrivateKey { get; set; }
+
+        public string SecureKey { get; set; }
     }
 }

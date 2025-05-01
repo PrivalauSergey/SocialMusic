@@ -33,7 +33,10 @@ namespace SM.Home.API.Endpoints.Login
                     return Results.BadRequest(validationResult.ToResponse());
                 }
 
-                var response = await accountService.Login(login.Login, login.Password);
+                var response = await accountService.Login(
+                    login.Login,
+                    login.EncryptedPassword,
+                    login.IvHex);
 
                 return response.StatusCode switch
                 {

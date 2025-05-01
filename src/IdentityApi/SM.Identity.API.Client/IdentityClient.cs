@@ -1,7 +1,7 @@
-﻿using System.Net;
+﻿using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using SM.Identity.API.Client.Models;
+using System.Threading.Tasks;
 using SM.Identity.API.Client.Models.Account;
 using SM.Identity.API.Client.Models.Login;
 

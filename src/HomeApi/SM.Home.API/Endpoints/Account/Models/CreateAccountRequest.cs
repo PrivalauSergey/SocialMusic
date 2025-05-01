@@ -9,11 +9,17 @@ namespace SM.Home.API.Endpoints.Account.Models
         [JsonPropertyName("username")]
         public string Username { get; set; }
 
+        [Required]
         [EmailAddress]
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
+        [Required]
+        [JsonPropertyName("encryptedPassword")]
+        public string EncryptedPassword { get; set; }
+
+        [Required]
+        [JsonPropertyName("ivHex")]
+        public string IvHex { get; set; }
     }
 }
