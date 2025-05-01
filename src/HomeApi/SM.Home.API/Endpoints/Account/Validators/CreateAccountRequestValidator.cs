@@ -13,11 +13,8 @@ namespace SM.Home.API.Endpoints.Account.Validators
                 .MinimumLength(2)
                 .MaximumLength(15);
 
-            RuleFor(x => x.Password)
-                .NotEmpty()
-                .MinimumLength(6)
-                .Matches(RegexHelper.AtLeastOneCapitalSymbol).WithMessage("Password should contain at least one capital symbol")
-                .Matches(RegexHelper.AtLeastOneNonSymbol).WithMessage("Password should contain at least one non symbol");
+            RuleFor(x => x.EncryptedPassword)
+                .NotEmpty();
 
             RuleFor(x => x.Email)
                  .NotEmpty()

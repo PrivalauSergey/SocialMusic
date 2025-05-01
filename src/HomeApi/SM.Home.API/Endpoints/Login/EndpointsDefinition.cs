@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Net;
+using System.Threading;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -32,13 +33,22 @@ namespace SM.Home.API.Endpoints.Login
                     return Results.BadRequest(validationResult.ToResponse());
                 }
 
-                var response = await accountService.Login(login.Login, login.Password);
+                var response = await accountService.Login(
+                    login.Login,
+                    login.EncryptedPassword,
+                    login.IvHex);
 
-                return Results.Ok(response);
+                return response.StatusCode switch
+                {
+                    HttpStatusCode.OK => Results.Ok(response.Data),
+                    HttpStatusCode.BadRequest => Results.BadRequest(),
+                    _ => Results.InternalServerError()
+                };
             })
              .AllowAnonymous()
              .Produces(StatusCodes.Status201Created)
-             .Produces(StatusCodes.Status400BadRequest);
+             .Produces(StatusCodes.Status400BadRequest)
+             .Produces(StatusCodes.Status500InternalServerError);
 
             return group;
         }

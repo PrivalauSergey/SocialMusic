@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SM.Identity.API.Models.Login;
-using SM.Identity.API.Services.Interfaces;
+using SM.Identity.API.Services;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace SM.Identity.API.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiVersion("1.0")]
+    [Route("api/v1/[controller]")]
     public class TokenController : ControllerBase
     {
         private readonly IAccountService _accountService;
@@ -20,11 +20,17 @@ namespace SM.Identity.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequest loginRequest)
         {
-            var token = await _accountService.LoginAsync(loginRequest.Login, loginRequest.Password);
-            if (token != null)
-                return Ok(new UserLoginResponse {Token = token});
+            var response = await _accountService.LoginByNameOrEmailAsync(
+                loginRequest.Login,
+                loginRequest.EncrryptPassword,
+                loginRequest.IvHex);
 
-            return Unauthorized();
+            return response.StatusCode switch
+            {
+                HttpStatusCode.OK => Ok(response.Data),
+                HttpStatusCode.BadRequest => BadRequest(),
+                _ => StatusCode((int)HttpStatusCode.InternalServerError)
+            };
         }
     }
 }

@@ -1,13 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using SM.Identity.API.Services.Interfaces;
 using SM.Identity.API.Models.Account;
+using System.Net;
+using Microsoft.AspNetCore.Http.HttpResults;
+using SM.Identity.API.Services;
+using System.Text;
+using System;
+using System.Security.Cryptography;
 
 namespace SM.Identity.API.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiVersion("1.0")]
+    [Route("api/v1/[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
@@ -20,8 +24,18 @@ namespace SM.Identity.API.Controllers
         [HttpPost("accounts")]
         public async Task<IActionResult> CreateAccount([FromBody] AccountCreateRequest createRequest)
         {
-            var token = await _accountService.CreateAccountAsync(createRequest.UserName, createRequest.Email, createRequest.Password);
-            return Ok(new AccountCreateResponse { Token = token });
+            var response = await _accountService.CreateAccountAsync(
+                createRequest.UserName,
+                createRequest.Email,
+                createRequest.EncrryptPassword,
+                createRequest.IvHex);
+
+            return response.StatusCode switch
+            {
+                HttpStatusCode.OK => Ok(response.Data),
+                HttpStatusCode.BadRequest => BadRequest(),
+                _ => StatusCode((int)HttpStatusCode.InternalServerError)
+            };
         }
     }
 }

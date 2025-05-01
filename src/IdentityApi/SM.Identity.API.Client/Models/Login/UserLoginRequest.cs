@@ -1,8 +1,16 @@
-﻿namespace SM.Identity.API.Client.Models.Login
+﻿using System.Text.Json.Serialization;
+
+namespace SM.Identity.API.Client.Models.Login
 {
     public class UserLoginRequest
     {
+        [JsonPropertyName("login")]
         public string Login { get; set; }
-        public string Password { get; set; }
+
+        [JsonPropertyName("encrryptPassword")]
+        public string EncrryptPassword { get; set; }
+
+        [JsonPropertyName("ivHex")]
+        public string IvHex { get; set; }
     }
 }

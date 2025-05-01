@@ -11,6 +11,10 @@ namespace SM.Home.API.Endpoints.Account.Models
 
         [Required]
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string EncryptedPassword { get; set; }
+
+        [Required]
+        [JsonPropertyName("ivHex")]
+        public string IvHex { get; set; }
     }
 }
