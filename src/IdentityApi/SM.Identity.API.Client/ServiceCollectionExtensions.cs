@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SM.Identity.API.Client;
+using System;
 
 namespace Tabasco.Scheduler.ApiClient
 {

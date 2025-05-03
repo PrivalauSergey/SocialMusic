@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginResponseModel } from './models/login-response.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { EncryptionService } from '../common/encrypt.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +14,7 @@ export class AuthService {
 
     private loginUrl = "http://localhost:8082/api/v1/login";
     private token: string | null = null;
+    private key: string;
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,14 +22,19 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        private router: Router
-    ) {}
+        private router: Router,
+        private encrptionService: EncryptionService,
+    ) {
+        this.key = environment.secureKey;
+    }
 
     login(
         login: string | null | undefined,
         password: string | null | undefined
     ) : Observable<LoginResponseModel> {
-        var data = new LoginRequestModel(login, password) 
+        const passwordString = this.ensureString(password);
+        var encrypt = this.encrptionService.encryptPassword(passwordString, this.key);
+        var data = new LoginRequestModel(login, encrypt.encryptedPassword, encrypt.iv);
         return this.http.post<LoginResponseModel>(this.loginUrl, data, this.httpOptions)                     
     }
 
@@ -47,5 +55,9 @@ export class AuthService {
 
     isAuthenticated(): boolean {
         return this.getToken() !== null;
+    }
+
+    ensureString(input: string | null | undefined): string {
+        return input ?? '';
     }
 }
