@@ -5,8 +5,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'login',
   standalone: true,
+  selector: 'login',
   imports: [ReactiveFormsModule, FormsModule, RouterLink, RouterLinkActive, NgIf ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
