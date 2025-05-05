@@ -1,0 +1,215 @@
+.queue-container {
+    background-color: #2f3136;
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    .now-playing {
+      margin-bottom: 24px;
+      
+      h3 {
+        color: #8e9297;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin: 0 0 16px 0;
+      }
+      
+      .current-song {
+        display: flex;
+        background-color: #292b2f;
+        border-radius: 4px;
+        overflow: hidden;
+        
+        .song-thumbnail {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+        }
+        
+        .song-details {
+          padding: 12px;
+          flex: 1;
+          
+          h4 {
+            margin: 0 0 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          
+          .song-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #72767d;
+            font-size: 12px;
+            margin-bottom: 12px;
+          }
+          
+          .song-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            button {
+              background-color: #5865f2;
+              color: white;
+              border: none;
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              
+              &:hover {
+                background-color: #4752c4;
+              }
+            }
+            
+            .votes {
+              display: flex;
+              gap: 8px;
+              
+              button {
+                background-color: transparent;
+                border: 1px solid #72767d;
+                color: #b9bbbe;
+                font-size: 12px;
+                width: auto;
+                padding: 0 8px;
+                border-radius: 4px;
+                height: 24px;
+                
+                &:hover {
+                  background-color: #4f545c;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .no-song {
+        padding: 16px;
+        background-color: #292b2f;
+        border-radius: 4px;
+        color: #72767d;
+        text-align: center;
+      }
+    }
+    
+    .queue {
+      flex: 1;
+      overflow-y: auto;
+      
+      .queue-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        
+        h3 {
+          color: #8e9297;
+          font-size: 12px;
+          text-transform: uppercase;
+          margin: 0;
+        }
+        
+        .badge {
+          background-color: #72767d;
+          border-radius: 10px;
+          padding: 2px 6px;
+          margin-left: 8px;
+          font-size: 12px;
+        }
+      }
+      
+      .queue-item {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 4px;
+        background-color: rgba(79, 84, 92, 0.16);
+        
+        &:hover {
+          background-color: rgba(79, 84, 92, 0.32);
+        }
+        
+        .position {
+          width: 20px;
+          text-align: center;
+          font-size: 12px;
+          color: #b9bbbe;
+          margin-right: 12px;
+        }
+        
+        .song-thumbnail {
+          width: 40px;
+          height: 40px;
+          border-radius: 4px;
+          margin-right: 12px;
+        }
+        
+        .song-info {
+          flex: 1;
+          min-width: 0;
+          
+          .song-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+            margin: 0 0 4px 0;
+          }
+          
+          .song-added {
+            font-size: 12px;
+            color: #72767d;
+          }
+        }
+        
+        .song-votes {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 0 12px;
+          font-size: 12px;
+          
+          .upvotes {
+            color: #3ba55c;
+          }
+          
+          .downvotes {
+            color: #ed4245;
+          }
+        }
+        
+        .song-actions {
+          display: flex;
+          gap: 4px;
+          
+          button {
+            background: none;
+            border: none;
+            color: #b9bbbe;
+            cursor: pointer;
+            padding: 4px;
+            
+            &:hover {
+              color: white;
+            }
+            
+            &.delete {
+              color: #ed4245;
+              
+              &:hover {
+                color: #ff6b6b;
+              }
+            }
+          }
+        }
+      }
+    }
+  }

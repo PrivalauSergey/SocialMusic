@@ -10,7 +10,7 @@ namespace SM.Home.API.Endpoints.Account.Models
         public string Login { get; set; }
 
         [Required]
-        [JsonPropertyName("password")]
+        [JsonPropertyName("encryptedPassword")]
         public string EncryptedPassword { get; set; }
 
         [Required]

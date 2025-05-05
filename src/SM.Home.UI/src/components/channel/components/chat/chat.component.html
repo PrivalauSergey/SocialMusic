@@ -1,0 +1,51 @@
+<div class="chat-container">
+    <div class="chat-header">
+      <h2># {{ channelId }}</h2>
+    </div>
+    
+    <div class="messages">
+      <div *ngFor="let message of messages" class="message">
+        <img [src]="message.user.avatar" [alt]="message.user.name" class="avatar">
+        
+        <div class="message-content">
+          <div class="message-header">
+            <span class="username">{{ message.user.name }}</span>
+            <span class="role-badge" [class.owner]="message.user.role === 'owner'">
+              {{ message.user.role }}
+            </span>
+            <span class="timestamp">
+              {{ message.timestamp | date:'shortTime' }}
+            </span>
+          </div>
+          
+          <p class="message-text">{{ message.text }}</p>
+          
+          <div *ngIf="message.song" class="song-attachment">
+            <img [src]="message.song.thumbnail" class="song-thumbnail">
+            
+            <div class="song-info">
+              <div class="song-title">{{ message.song.title }}</div>
+              <div class="song-votes">
+                <button (click)="vote(message.song.id, 'up')">
+                  👍 {{ message.song.upvotes }}
+                </button>
+                <button (click)="vote(message.song.id, 'down')">
+                  👎 {{ message.song.downvotes }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="message-input">
+      <input 
+        type="text" 
+        [(ngModel)]="newMessage"
+        (keyup.enter)="sendMessage()"
+        (paste)="detectYoutubeUrl($event)"
+        placeholder="Type a message or paste YouTube URL">
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>

@@ -1,0 +1,20 @@
+<div class="member-list-container">
+    <div class="header">
+      <h2>Members</h2>
+      <span class="badge">{{ members.length }}</span>
+    </div>
+    
+    <div class="members">
+      <div *ngFor="let member of members" class="member">
+        <img [src]="member.avatar" [alt]="member.name">
+        <span>{{ member.name }}</span>
+        <span class="role" [class.owner]="member.role === 'owner'">
+          {{ member.role }}
+        </span>
+      </div>
+    </div>
+    
+    <button *ngIf="isOwner" class="delete-btn" (click)="confirmDelete()">
+      Delete Channel
+    </button>
+  </div>

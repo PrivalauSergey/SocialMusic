@@ -1,0 +1,64 @@
+<div class="queue-container">
+    <div class="now-playing">
+      <h3>Now Playing</h3>
+      
+      <div *ngIf="currentSong; else noSong" class="current-song">
+        <img [src]="currentSong.thumbnail" [alt]="currentSong.title" class="song-thumbnail">
+        
+        <div class="song-details">
+          <h4>{{ currentSong.title }}</h4>
+          <div class="song-meta">
+            <span>Added by {{ currentSong.addedBy }}</span>
+            <span>{{ currentSong.duration }}</span>
+          </div>
+          
+          <div class="song-controls">
+            <button (click)="togglePlayback()">
+              {{ isPlaying ? '❚❚' : '▶' }}
+            </button>
+            
+            <div class="votes">
+              <button (click)="vote(currentSong.id, 'up')">
+                ▲ {{ currentSong.upvotes }}
+              </button>
+              <button (click)="vote(currentSong.id, 'down')">
+                ▼ {{ currentSong.downvotes }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noSong>
+        <div class="no-song">No song is currently playing</div>
+      </ng-template>
+    </div>
+    
+    <div class="queue">
+      <div class="queue-header">
+        <h3>Queue</h3>
+        <span class="badge">{{ queue.length }}</span>
+      </div>
+      
+      <div *ngFor="let song of queue; let i = index" class="queue-item">
+        <span class="position">{{ i + 1 }}</span>
+        <img [src]="song.thumbnail" [alt]="song.title" class="song-thumbnail">
+        
+        <div class="song-info">
+          <div class="song-title">{{ song.title }}</div>
+          <div class="song-added">Added by {{ song.addedBy }}</div>
+        </div>
+        
+        <div class="song-votes">
+          <span class="upvotes">{{ song.upvotes }}</span>
+          <span class="downvotes">{{ song.downvotes }}</span>
+        </div>
+        
+        <div class="song-actions" *ngIf="isOwner">
+          <button (click)="moveSong(song.id, 'up')">↑</button>
+          <button (click)="moveSong(song.id, 'down')">↓</button>
+          <button (click)="removeSong(song.id)" class="delete">×</button>
+        </div>
+      </div>
+    </div>
+  </div>

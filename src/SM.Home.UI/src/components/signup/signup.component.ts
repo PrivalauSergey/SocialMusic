@@ -7,8 +7,8 @@ import { AuthService } from '../../services/authorization-service/auth.service';
 import { passwordRegex } from '../../directives/password-regex-validator-directive';
 
 @Component({
-  selector: 'account',
   standalone: true,
+  selector: 'account',
   imports: [ReactiveFormsModule, FormsModule, RouterLink, RouterLinkActive, NgIf],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
