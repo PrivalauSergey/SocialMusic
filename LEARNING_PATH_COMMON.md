@@ -530,6 +530,39 @@ Session: **Time: 1.5h**
 **Books**
 - [Microservices patterns](https://microservices.io/book)
 
+# Microservises Deep Dive Part 2 (Variative Theoretical Module)
+
+- How to organize microservices
+    - Service as a single structure unit which connected to other services
+    - Organized around business capabilities
+    - Small size of services
+    - Domain Driven Design Connections
+        - [Eric Evans](https://domainlanguage.com/about/)
+        - [Martin Fowler](https://www.martinfowler.com/)
+        - [The Big Blue Book](https://www.domainlanguage.com/ddd/blue-book/)
+        - [Patterns of Enterprise Application Architecture](https://martinfowler.com/eaaCatalog/)
+    - [Bounded Context Pattern](https://martinfowler.com/bliki/BoundedContext.html)
+    - ORM Usage
+- How to syncronize microservices state
+    - [Chereography vs Orchestration](https://camunda.com/blog/2023/02/orchestration-vs-choreography/)
+    - Distributed Transactions
+        - [2F Commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)
+        - [SAGA + Compensative Transactions](https://learn.microsoft.com/en-us/azure/architecture/patterns/saga)
+            - [Mass Transit](https://masstransit.io/)
+            - [NServiceBus](https://particular.net/nservicebus)
+            - https://github.com/Zio-Net/Sagaway
+            - https://github.com/mizrael/OpenSleigh
+- Microservices Technology Agnostic
+    - [Polygloth persistance](https://martinfowler.com/bliki/PolyglotPersistence.html)
+    - General Technology Agnostic
+- Deployment and Management
+    - Containerization Revolution
+    - Infrastructure and Clouds
+
+**Books**
+- [Eric Evans](https://domainlanguage.com/about/)
+- [Martin Fowler](https://www.martinfowler.com/)
+
 # Additional modules
 
 Additional theoretical modules to close gaps in mentee knowledge
