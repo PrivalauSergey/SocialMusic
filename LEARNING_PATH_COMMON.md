@@ -607,4 +607,25 @@ Additional theoretical modules to close gaps in mentee knowledge
         - How does finalizer executed?
         - How to use IDisposable for optimization
 
-
+## OOP Design Patterns And Principles
+- [SOLID](https://en.wikipedia.org/wiki/SOLID)
+    - Single responsibility
+    - Open-closed principle
+    - Liskov substitution principle
+    - Interface segregation principle
+    - Dependency inversion principle
+- [Aggregation vs Composition](https://medium.com/@emad-mohamed/association-vs-aggregation-vs-composition-vs-inheritance-3d63ac32ed92)
+- [GRASP](https://en.wikipedia.org/wiki/GRASP_(object-oriented_design))
+    - Information expert
+    - Creator
+    - Controller
+    - Indirection
+    - Low coupling
+    - High cohesion
+    - Polymorphism
+    - Protected variations
+    - Pure fabrication
+- [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+- [KISS](https://en.wikipedia.org/wiki/KISS_principle)
+- [YAGNEE](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
+- [GoF Patterns](https://en.wikipedia.org/wiki/Design_Patterns)
