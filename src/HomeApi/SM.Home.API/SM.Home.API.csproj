@@ -7,25 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Constants\**" />
     <Compile Remove="Orchestrators\**" />
+    <Content Remove="Constants\**" />
     <Content Remove="Orchestrators\**" />
+    <EmbeddedResource Remove="Constants\**" />
     <EmbeddedResource Remove="Orchestrators\**" />
+    <None Remove="Constants\**" />
     <None Remove="Orchestrators\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.11.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\IdentityApi\SM.Identity.API.Client\SM.Identity.API.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Certs\" />
   </ItemGroup>
 
 </Project>

@@ -10,15 +10,28 @@ namespace SM.Home.API.Endpoints.Channel
         {
             var group = endpoints.MapGroup("Channel")
                 .WithOpenApi()
-                .WithTags("User's Channel");
-            
-            group.MapPost("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK);
+                .WithTags("User's Channel")
+                .RequireAuthorization("User");
 
-            group.MapGet("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+            group.MapPost("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
-            group.MapPut("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+            group.MapGet("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
-            group.MapDelete("/", () => { return Results.Ok(); }).Produces(StatusCodes.Status200OK); ;
+            group.MapPut("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
+
+            group.MapDelete("/", () => { return Results.Ok(); })
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status401Unauthorized)
+                .Produces(StatusCodes.Status403Forbidden);
 
             return group;
         }

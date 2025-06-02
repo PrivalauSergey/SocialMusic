@@ -4,8 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AccountService } from '../../services/account-service/account.service';
 import { AuthService } from '../../services/authorization-service/auth.service';
-import { atLeastOneCapitalValidator } from '../../directives/at-least-one-capital-regex-validator-directive';
-import { atLeastOneNonSymbolValidator } from '../../directives/at-least-one-non-symbol-validator-directive';
+import { passwordRegex } from '../../directives/password-regex-validator-directive';
 
 @Component({
   selector: 'account',
@@ -34,8 +33,7 @@ export class SignupComponent {
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
-      atLeastOneCapitalValidator(),
-      atLeastOneNonSymbolValidator() 
+      passwordRegex()
     ])
   })
 

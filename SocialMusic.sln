@@ -31,7 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.MusicPlayer.API.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{DA7FA087-D1C5-4DE6-94FD-371FCCCB00C8}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Siarhei_Privalau\Downloads\logo.jfif = ..\..\..\Siarhei_Privalau\Downloads\logo.jfif
 		solution items\sm-authorization-server-api.yaml = solution items\sm-authorization-server-api.yaml
 		solution items\sm-channel-api.yaml = solution items\sm-channel-api.yaml
 		solution items\sm-chat-api.yaml = solution items\sm-chat-api.yaml
