@@ -1,6 +1,10 @@
-﻿using SM.Channel.API.Client.Models;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using SM.Channel.API.Client.Models;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SM.Channel.API.Client
 {
@@ -8,9 +12,9 @@ namespace SM.Channel.API.Client
     {
         private readonly HttpClient _httpClient;
 
-        public ChannelClient(HttpClient httpClient)
+        public ChannelClient(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClientFactory.CreateClient();
         }
 
         public async Task<ApiResponse<IEnumerable<ChannelDetailsResponse>>> GetChannelsByUserIdAsync(long userId, CancellationToken cancellationToken = default)

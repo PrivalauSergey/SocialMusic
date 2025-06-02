@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SM.Channel.API.Data.Entities;
-using System;
 using ChannelEntity = SM.Channel.API.Data.Entities.Channel;
 
 namespace SM.Channel.API.Data

@@ -1,4 +1,7 @@
-﻿using SM.Channel.API.Client.Models;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using SM.Channel.API.Client.Models;
 
 namespace SM.Channel.API.Client
 {

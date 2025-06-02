@@ -16,8 +16,9 @@ namespace SM.Channel.API.Endpoints
         public static void MapChannelEndpoints(this IEndpointRouteBuilder endpoints)
         {
             var group = endpoints.MapGroup("api/v1/Channel")
-				.WithOpenApi()
-                .WithTags("User's Channel");
+                .WithOpenApi()
+                .WithTags("User's Channel")
+                .RequireAuthorization("User");
 
             group.MapGet("/user/{userId:long}", async (
                 [FromRoute] long userId,

@@ -31,7 +31,6 @@ builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddTransient<IChannelRepository, ChannelRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IChannelUserRepository, ChannelUserRepository>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IChannelService, ChannelService>();
 
 builder.Services.AddSwaggerGen();
