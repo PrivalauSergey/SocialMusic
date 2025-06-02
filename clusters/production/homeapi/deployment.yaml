@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeapi
+  template:
+    metadata:
+      labels:
+        app: homeapi
+      annotations:
+        fluxcd.io/automated: "true"
+    spec:
+      containers:
+      - name: homeapi
+        image: your-acr.azurecr.io/homeapi:0.0.1 # Will be auto-updated
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef:
+            name: external-prod-secret
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80

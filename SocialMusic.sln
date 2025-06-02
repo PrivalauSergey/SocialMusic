@@ -31,11 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.MusicPlayer.API.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{DA7FA087-D1C5-4DE6-94FD-371FCCCB00C8}"
 	ProjectSection(SolutionItems) = preProject
-		solution items\sm-authorization-server-api.yaml = solution items\sm-authorization-server-api.yaml
 		solution items\sm-channel-api.yaml = solution items\sm-channel-api.yaml
 		solution items\sm-chat-api.yaml = solution items\sm-chat-api.yaml
 		solution items\sm-home-api.yaml = solution items\sm-home-api.yaml
 		solution items\sm-home-ui.yaml = solution items\sm-home-ui.yaml
+		solution items\sm-identity-api.yaml = solution items\sm-identity-api.yaml
 		solution items\sm-music-player-api.yaml = solution items\sm-music-player-api.yaml
 	EndProjectSection
 EndProject
@@ -60,6 +60,25 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{24C92543-A66F-4884-A6B4-EEC14AE11B3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{992F1696-D91D-4B82-9D80-498C6D2B8B83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clusters", "clusters", "{F7C14972-3708-4CEA-B43F-ABD5679AB49E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "production", "production", "{5177983B-0AAC-4FB9-8CBD-5C2E75201159}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "homeapi", "homeapi", "{388745BE-BFBE-4611-9078-76666E41E549}"
+	ProjectSection(SolutionItems) = preProject
+		deployment.yaml = deployment.yaml
+		kustomization.yaml = kustomization.yaml
+		secret-mock.yaml = secret-mock.yaml
+		service.yaml = service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "flux-system", "flux-system", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		clusters\production\flux-system\gotk-components.yaml = clusters\production\flux-system\gotk-components.yaml
+		clusters\production\flux-system\gotk-sync.yaml = clusters\production\flux-system\gotk-sync.yaml
+		clusters\production\flux-system\kustomization.yaml = clusters\production\flux-system\kustomization.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,6 +164,9 @@ Global
 		{1B93280F-AF92-4B74-9F5E-5867B0EC4B1D} = {CF246BE2-E9C1-4D8C-B211-2B9057B2DC20}
 		{24C92543-A66F-4884-A6B4-EEC14AE11B3B} = {4F4AA367-9E9C-454D-9BC4-1D72EF9FF237}
 		{992F1696-D91D-4B82-9D80-498C6D2B8B83} = {124F7E10-A290-4462-ADDF-3BB959E8F354}
+		{5177983B-0AAC-4FB9-8CBD-5C2E75201159} = {F7C14972-3708-4CEA-B43F-ABD5679AB49E}
+		{388745BE-BFBE-4611-9078-76666E41E549} = {5177983B-0AAC-4FB9-8CBD-5C2E75201159}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {5177983B-0AAC-4FB9-8CBD-5C2E75201159}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86DE3289-D32A-4533-9622-C4EED628E899}
