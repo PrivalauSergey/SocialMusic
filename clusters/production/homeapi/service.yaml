@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: homeapi
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 80
     targetPort: 80
+    nodeport: 30080
   selector:
     app: homeapi
