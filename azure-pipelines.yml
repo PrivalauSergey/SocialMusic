@@ -1,0 +1,26 @@
+trigger:
+- production
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    echo "Installing Docker..."
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+  displayName: 'Install Docker'
+
+- script: |
+    docker build -t localhost:8082/homeapi:$(Build.BuildId) ./src/HomeApi
+    docker push localhost:8082/homeapi:$(Build.BuildId)
+  displayName: 'Build and Push'
+
+- script: |
+    sed -i "s|image:.*|image: localhost:8082/homeapi:$(Build.BuildId)|" clusters/production/homeapi/deployment.yaml
+    git config --global user.email "privalausergey@gmail.com"
+    git config --global user.name "privalausergey"
+    git add clusters/production/homeapi/deployment.yaml
+    git commit -m "Update image to $(Build.BuildId)"
+    git push origin HEAD:production
+  displayName: 'Update Deployment'
