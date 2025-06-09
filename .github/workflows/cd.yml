@@ -1,0 +1,49 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [ "production" ]
+    paths: 
+      - 'src/HomeApi/**'
+      - 'clusters/production/homeapi/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checkout code
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Set up Docker Buildx
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    # Login to Minikube registry (simulated)
+    - name: Configure Minikube registry
+      run: |
+        echo "127.0.0.1 localhost" | sudo tee -a /etc/hosts
+        echo "::1 localhost" | sudo tee -a /etc/hosts
+
+    # Build and push to Minikube registry (local simulation)
+    - name: Build and push
+      run: |
+        docker build -t localhost:5001/homeapi:$GITHUB_SHA ./src/HomeApi
+        docker push localhost:5001/homeapi:$GITHUB_SHA
+
+    # Update Kubernetes manifests
+    - name: Update deployment
+      run: |
+        sed -i "s|image:.*|image: localhost:8082/homeapi:$GITHUB_SHA|" clusters/production/homeapi/deployment.yaml
+        git config --global user.name "CD"
+        git config --global user.email "actions@github.com"
+        git add clusters/production/homeapi/deployment.yaml
+        git commit -m "Update image to $GITHUB_SHA"
+        git push
+
+    # Trigger Flux reconciliation (via API)
+    - name: Notify Flux
+      run: |
+        FLUX_POD=$(kubectl get pod -n flux-system -l app=source-controller -o jsonpath='{.items[0].metadata.name}')
+        kubectl exec -n flux-system $FLUX_POD -- flux reconcile source git flux-system
