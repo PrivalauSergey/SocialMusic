@@ -29,16 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Chat.API.Tests", "src\Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.MusicPlayer.API.Tests", "src\MusicPlayerApi\tests\SM.MusicPlayer.API.Tests\SM.MusicPlayer.API.Tests.csproj", "{41138708-88DB-46C7-8E7B-62CD5CD5FE61}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{DA7FA087-D1C5-4DE6-94FD-371FCCCB00C8}"
-	ProjectSection(SolutionItems) = preProject
-		solution items\sm-channel-api.yaml = solution items\sm-channel-api.yaml
-		solution items\sm-chat-api.yaml = solution items\sm-chat-api.yaml
-		solution items\sm-home-api.yaml = solution items\sm-home-api.yaml
-		solution items\sm-home-ui.yaml = solution items\sm-home-ui.yaml
-		solution items\sm-identity-api.yaml = solution items\sm-identity-api.yaml
-		solution items\sm-music-player-api.yaml = solution items\sm-music-player-api.yaml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelApi", "ChannelApi", "{ADC53CE1-76DC-4AC1-8529-17DB78750FCC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatApi", "ChatApi", "{246142BB-49BB-4B21-AE84-B8554C7FF649}"

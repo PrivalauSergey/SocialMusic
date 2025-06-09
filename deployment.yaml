@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: homeapi
-        image: your-acr.azurecr.io/homeapi:0.0.1 # Will be auto-updated
+        image: localhost:8082/homeapi:0.0.1 # Will be auto-updated
         ports:
         - containerPort: 80
         envFrom:
@@ -25,7 +25,7 @@ spec:
         resources:
           limits:
             cpu: 100m
-            memory: 256Mi
+            memory: 64Mi
         livenessProbe:
           httpGet:
             path: /health
