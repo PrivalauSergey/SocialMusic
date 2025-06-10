@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{24C92543
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{992F1696-D91D-4B82-9D80-498C6D2B8B83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Channel.API.Client", "src\ChannelApi\SM.Channel.API.Client\SM.Channel.API.Client.csproj", "{4BDBB84A-34BF-442C-99A9-1F4FE10BE55D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{41138708-88DB-46C7-8E7B-62CD5CD5FE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41138708-88DB-46C7-8E7B-62CD5CD5FE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41138708-88DB-46C7-8E7B-62CD5CD5FE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BDBB84A-34BF-442C-99A9-1F4FE10BE55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BDBB84A-34BF-442C-99A9-1F4FE10BE55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BDBB84A-34BF-442C-99A9-1F4FE10BE55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BDBB84A-34BF-442C-99A9-1F4FE10BE55D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,6 +151,7 @@ Global
 		{1B93280F-AF92-4B74-9F5E-5867B0EC4B1D} = {CF246BE2-E9C1-4D8C-B211-2B9057B2DC20}
 		{24C92543-A66F-4884-A6B4-EEC14AE11B3B} = {4F4AA367-9E9C-454D-9BC4-1D72EF9FF237}
 		{992F1696-D91D-4B82-9D80-498C6D2B8B83} = {124F7E10-A290-4462-ADDF-3BB959E8F354}
+		{4BDBB84A-34BF-442C-99A9-1F4FE10BE55D} = {ADC53CE1-76DC-4AC1-8529-17DB78750FCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86DE3289-D32A-4533-9622-C4EED628E899}
