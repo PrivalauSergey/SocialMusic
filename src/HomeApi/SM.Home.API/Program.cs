@@ -16,6 +16,7 @@ using SM.Home.API.Services;
 using SM.Identity.API.Client;
 using System;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace SM.Home.API
 {
@@ -43,7 +44,7 @@ namespace SM.Home.API
             builder.Configuration.Bind(settings);
 
             var rsa = RSA.Create();
-            rsa.ImportFromPem(settings.IdentityClientSettings.PublicKey);
+            rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)););
 
             services.AddAuthentication(options =>
             {
@@ -59,7 +60,7 @@ namespace SM.Home.API
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidAudience = "api",
-                    ValidIssuer = settings.IdentityClientSettings.ClientUrl,
+                    ValidIssuer = Convert.FromBase64String(settings.IdentityClientSettings.ClientUrl).ToString(),
                     ValidateLifetime = true,
                     IssuerSigningKey = new RsaSecurityKey(rsa)
                 };
