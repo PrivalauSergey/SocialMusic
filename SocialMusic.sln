@@ -63,7 +63,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "homeapi", "homeapi", "{3887
 		clusters\production\homeapi\deployment.yaml = clusters\production\homeapi\deployment.yaml
 		clusters\production\homeapi\ingress.yaml = clusters\production\homeapi\ingress.yaml
 		clusters\production\homeapi\kustomization.yaml = clusters\production\homeapi\kustomization.yaml
-		clusters\production\homeapi\secret-mock.yaml = clusters\production\homeapi\secret-mock.yaml
 		clusters\production\homeapi\service.yaml = clusters\production\homeapi\service.yaml
 	EndProjectSection
 EndProject
