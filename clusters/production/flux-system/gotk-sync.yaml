@@ -11,7 +11,7 @@ spec:
     branch: production
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/PrivalauSergey/SocialMusic
+  url: https://github.com/PrivalauSergey/SocialMusic.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
