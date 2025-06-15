@@ -4,6 +4,3 @@ resources:
 - deployment.yaml
 - service.yaml
 - secret-mock.yaml
-images:
-- name: localhost:8082/homeapi
-  newTag: 0.0.1 # Will be auto-updated

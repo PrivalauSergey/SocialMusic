@@ -2,7 +2,6 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,11 +13,9 @@ using SM.Home.API.Endpoints;
 using SM.Home.API.Endpoints.Account.Models;
 using SM.Home.API.Endpoints.Account.Validators;
 using SM.Home.API.Services;
+using SM.Identity.API.Client;
 using System;
-using System.IO;
 using System.Security.Cryptography;
-using System.Text;
-using Tabasco.Scheduler.ApiClient;
 
 namespace SM.Home.API
 {

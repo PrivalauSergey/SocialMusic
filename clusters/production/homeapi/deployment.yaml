@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: homeapi
-        image: localhost:8082/homeapi:0.0.1 # Will be auto-updated
+        image: homeapi:net9
+        imagePullPolicy: Never
         ports:
         - containerPort: 8082
         envFrom:
@@ -30,3 +31,9 @@ spec:
           httpGet:
             path: /health
             port: 8082
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8082
+          initialDelaySeconds: 5
+          periodSeconds: 10

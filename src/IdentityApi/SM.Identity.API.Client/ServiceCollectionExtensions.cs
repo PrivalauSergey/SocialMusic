@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SM.Identity.API.Client;
 using System;
 
-namespace Tabasco.Scheduler.ApiClient
+namespace SM.Identity.API.Client
 {
     public static class ServiceCollectionExtensions
     {
