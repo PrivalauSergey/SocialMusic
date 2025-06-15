@@ -45,7 +45,7 @@ namespace SM.Home.API
             var settings = new ApplicationSettings();
             builder.Configuration.Bind(settings);
 
-            Console.WriteLine(settings?.IdentityClientSettings?.PublicKey);
+            throw new Exception(settings?.IdentityClientSettings?.PublicKey);
             var rsa = RSA.Create();
             rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)));
 
