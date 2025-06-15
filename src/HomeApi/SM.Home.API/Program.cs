@@ -29,7 +29,6 @@ namespace SM.Home.API
             // configure logging
             if (!builder.Environment.IsDevelopment())
             {
-                builder.Logging.ClearProviders();
                 builder.Logging.AddJsonConsole();
             }
             else
@@ -41,11 +40,12 @@ namespace SM.Home.API
 
             var services = builder.Services;
 
-            services.Configure<ApplicationSettings>(builder.Configuration);
             var settings = new ApplicationSettings();
+            services.Configure<ApplicationSettings>(builder.Configuration);
             builder.Configuration.Bind(settings);
 
-            throw new Exception(settings?.IdentityClientSettings?.PublicKey);
+            Console.Error.WriteLine($"PublicKey: {settings?.IdentityClientSettings?.PublicKey}");
+
             var rsa = RSA.Create();
             rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)));
 
