@@ -31,9 +31,11 @@ spec:
           httpGet:
             path: /health
             port: 8082
+          intialDelaySeconds: 15
+          periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /health
             port: 8082
           initialDelaySeconds: 5
-          periodSeconds: 10
+          periodSeconds: 5

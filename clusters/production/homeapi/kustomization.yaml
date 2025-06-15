@@ -6,7 +6,6 @@ resources:
 
 secretGenerator:
   - name: external-prod-secret
-    behavior: merge
     type: Opaque
     literals:
       - SecureKey=+amzz7XsMyiZkRf6eiDkQrUM+bk9O0uHvF04rE/mzmk=
