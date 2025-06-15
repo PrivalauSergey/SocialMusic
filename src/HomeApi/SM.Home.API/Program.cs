@@ -62,7 +62,7 @@ namespace SM.Home.API
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidAudience = "api",
-                    ValidIssuer = Convert.FromBase64String(settings.IdentityClientSettings.ClientUrl).ToString(),
+                    ValidIssuer = settings.IdentityClientSettings.ClientUrl,
                     ValidateLifetime = true,
                     IssuerSigningKey = new RsaSecurityKey(rsa)
                 };
