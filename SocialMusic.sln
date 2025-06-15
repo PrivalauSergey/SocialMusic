@@ -54,6 +54,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clusters", "clusters", "{F7C14972-3708-4CEA-B43F-ABD5679AB49E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "production", "production", "{5177983B-0AAC-4FB9-8CBD-5C2E75201159}"
+	ProjectSection(SolutionItems) = preProject
+		kustomization.yaml = kustomization.yaml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "homeapi", "homeapi", "{388745BE-BFBE-4611-9078-76666E41E549}"
 	ProjectSection(SolutionItems) = preProject
@@ -62,13 +65,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "homeapi", "homeapi", "{3887
 		clusters\production\homeapi\kustomization.yaml = clusters\production\homeapi\kustomization.yaml
 		clusters\production\homeapi\secret-mock.yaml = clusters\production\homeapi\secret-mock.yaml
 		clusters\production\homeapi\service.yaml = clusters\production\homeapi\service.yaml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "flux-system", "flux-system", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-	ProjectSection(SolutionItems) = preProject
-		clusters\production\flux-system\gotk-components.yaml = clusters\production\flux-system\gotk-components.yaml
-		clusters\production\flux-system\gotk-sync.yaml = clusters\production\flux-system\gotk-sync.yaml
-		clusters\production\flux-system\kustomization.yaml = clusters\production\flux-system\kustomization.yaml
 	EndProjectSection
 EndProject
 Global
@@ -157,7 +153,6 @@ Global
 		{992F1696-D91D-4B82-9D80-498C6D2B8B83} = {124F7E10-A290-4462-ADDF-3BB959E8F354}
 		{5177983B-0AAC-4FB9-8CBD-5C2E75201159} = {F7C14972-3708-4CEA-B43F-ABD5679AB49E}
 		{388745BE-BFBE-4611-9078-76666E41E549} = {5177983B-0AAC-4FB9-8CBD-5C2E75201159}
-		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {5177983B-0AAC-4FB9-8CBD-5C2E75201159}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86DE3289-D32A-4533-9622-C4EED628E899}
