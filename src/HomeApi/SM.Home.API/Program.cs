@@ -34,6 +34,8 @@ namespace SM.Home.API
             }
             else
             {
+                builder.Logging.AddJsonConsole();
+                builder.Logging.AddConsole();
                 builder.Services.AddCors();
             }
 
@@ -43,8 +45,9 @@ namespace SM.Home.API
             var settings = new ApplicationSettings();
             builder.Configuration.Bind(settings);
 
+            Console.WriteLine(settings?.IdentityClientSettings?.PublicKey);
             var rsa = RSA.Create();
-            rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)););
+            rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)));
 
             services.AddAuthentication(options =>
             {

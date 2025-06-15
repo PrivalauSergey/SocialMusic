@@ -20,6 +20,9 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8082
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
         envFrom:
         - secretRef:
             name: external-prod-secret
