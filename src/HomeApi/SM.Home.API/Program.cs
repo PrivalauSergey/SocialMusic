@@ -29,12 +29,11 @@ namespace SM.Home.API
             // configure logging
             if (!builder.Environment.IsDevelopment())
             {
+                builder.Logging.ClearProviders();
                 builder.Logging.AddJsonConsole();
             }
             else
             {
-                builder.Logging.AddJsonConsole();
-                builder.Logging.AddConsole();
                 builder.Services.AddCors();
             }
 
@@ -127,7 +126,6 @@ namespace SM.Home.API
             services.AddIdentityClient(settings.IdentityClientSettings);
 
             services.AddHealthChecks();
-
 
             var app = builder.Build();
 
