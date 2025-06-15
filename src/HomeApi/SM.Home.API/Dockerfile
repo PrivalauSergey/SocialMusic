@@ -17,3 +17,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "SM.Home.API.dll"]
+EXPOSE 8082

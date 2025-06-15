@@ -147,7 +147,7 @@ namespace SM.Home.API
 
             app.MapFallbackToFile("/index.html");
 
-            app.Run();
+            app.Run("http://0.0.0.0:8082");
         }
     }
 }
