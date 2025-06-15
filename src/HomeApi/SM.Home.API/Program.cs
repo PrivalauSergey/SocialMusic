@@ -122,6 +122,8 @@ namespace SM.Home.API
             // Clients
             services.AddIdentityClient(settings.IdentityClientSettings);
 
+            services.AddHealthChecks();
+
 
             var app = builder.Build();
 
@@ -139,6 +141,9 @@ namespace SM.Home.API
             app.UseAuthorization();
 
             app.MapApplicationEndpoints();
+
+            app.MapHealthChecks("/health");
+            app.MapHealthChecks("/ready");
 
             app.MapFallbackToFile("/index.html");
 

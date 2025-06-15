@@ -19,9 +19,6 @@ namespace SM.Home.API.Endpoints
             group.MapAccounts();
             group.MapChannel();
             group.MapLogin();
-
-            endpoints.MapHealth()
-                .WithHttpLogging(HttpLoggingFields.None);
         }
     }
 }
