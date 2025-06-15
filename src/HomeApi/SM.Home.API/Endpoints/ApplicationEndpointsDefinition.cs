@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Routing;
 using SM.Home.API.Endpoints.Account;
 using SM.Home.API.Endpoints.Channel;
-using SM.Home.API.Endpoints.Health;
 using SM.Home.API.Endpoints.Login;
 using SM.Home.API.Filters;
 
