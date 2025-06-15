@@ -28,8 +28,4 @@
     <ProjectReference Include="..\..\IdentityApi\SM.Identity.API.Client\SM.Identity.API.Client.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Certs\" />
-  </ItemGroup>
-
 </Project>

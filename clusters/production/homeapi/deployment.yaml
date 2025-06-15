@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: homeapi
-        image: your-acr.azurecr.io/homeapi:0.0.1 # Will be auto-updated
+        image: localhost:8082/homeapi:0.0.1 # Will be auto-updated
         ports:
-        - containerPort: 80
+        - containerPort: 8082
         envFrom:
         - secretRef:
             name: external-prod-secret
@@ -29,4 +29,4 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 80
+            port: 8082
