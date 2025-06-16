@@ -2,12 +2,13 @@ apiVersion: discovery.k8s.io/v1
 kind: Service
 metadata:
   name: homeapi
+  namespace: production
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: homeapi
   ports:
-  - name: http
-    protocol: TCP
-    port: 80
+  - port: 80
     targetPort: 8082
+    nodePort: 31000
+   
