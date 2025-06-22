@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: identityapi
-        image: identityapi
+        image: identityapi:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 8082

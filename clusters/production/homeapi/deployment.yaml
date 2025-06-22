@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: homeapi
-        image: homeapi:net9
+        image: homeapi:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 8082
