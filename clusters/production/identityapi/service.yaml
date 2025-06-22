@@ -1,0 +1,14 @@
+apiVersion: discovery.k8s.io/v1
+kind: Service
+metadata:
+  name: identityapi
+  namespace: production
+spec:
+  type: NodePort
+  selector:
+    app: identityapi
+  ports:
+  - port: 80
+    targetPort: 8081
+    nodePort: 31000
+   

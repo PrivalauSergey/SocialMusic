@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeui
+  template:
+    metadata:
+      labels:
+        app: homeui
+      annotations:
+        fluxcd.io/automated: "true"
+    spec:
+      containers:
+      - name: homeui
+        image: homeui
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        env:
+        - name: NG_APP_ENV
+          value: "production"
+        - name: NG_APP_API_BASE_URL
+          value: "http://SocialMusic"
+        envFrom:
+        - secretRef:
+            name: external-prod-secret
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          intialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5

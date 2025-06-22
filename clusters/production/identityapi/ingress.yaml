@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: homeapi-ingress
+  name: identityapi-ingress
   namespace: production
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: homeapi
+  - host: identityapi.local
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: homeapi
+            name: identityapi
             port:
               number: 80

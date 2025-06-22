@@ -1,20 +1,19 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Duende.IdentityServer.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using SM.Identity.API.Data;
-using SM.Identity.API.Services;
-using SM.Identity.API.Middlewares;
 using SM.Identity.API.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Routing;
-using Duende.IdentityServer.Services;
-using System.Threading.Tasks;
+using SM.Identity.API.Data;
+using SM.Identity.API.Middlewares;
+using SM.Identity.API.Services;
+using System;
 using System.Security.Cryptography;
-using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using static Duende.IdentityServer.IdentityServerConstants;
-using Microsoft.Extensions.Configuration;
 
 namespace SM.Identity.API.Extensions
 {
@@ -36,7 +35,7 @@ namespace SM.Identity.API.Extensions
                 .AddDefaultTokenProviders();
 
             var rsa = RSA.Create();
-            rsa.ImportFromPem(settings.PrivateKey);
+            rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.PrivateKey)));
 
             services.AddIdentityServer()
                 .AddSigningCredential(new RsaSecurityKey(rsa), RsaSigningAlgorithm.RS512)
@@ -52,6 +51,8 @@ namespace SM.Identity.API.Extensions
 
             services.AddControllers();
 
+            services.AddHealthChecks();
+
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
@@ -65,7 +66,10 @@ namespace SM.Identity.API.Extensions
             app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.MapControllers();
 
-            app.Run();
+            app.MapHealthChecks("/health");
+            app.MapHealthChecks("/ready");
+
+            app.Run("http://0.0.0.0:8081");
         }
     }
 }

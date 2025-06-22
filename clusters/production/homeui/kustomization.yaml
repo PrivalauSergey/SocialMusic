@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+
+secretGenerator:
+  - name: external-prod-secret
+    type: Opaque
+    literals:
+      - secureKey=+amzz7XsMyiZkRf6eiDkQrUM+bk9O0uHvF04rE/mzmk=
