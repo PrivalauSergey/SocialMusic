@@ -27,7 +27,7 @@ spec:
           value: "http://SocialMusic"
         envFrom:
         - secretRef:
-            name: external-prod-secret
+            name: external-secure-key-secret
         resources:
           limits:
             cpu: 100m

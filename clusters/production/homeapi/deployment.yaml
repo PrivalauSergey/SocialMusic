@@ -25,7 +25,7 @@ spec:
           value: "Production"
         envFrom:
         - secretRef:
-            name: external-prod-secret
+            name: external-public-key-secret
         resources:
           limits:
             cpu: 100m
