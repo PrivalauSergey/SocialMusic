@@ -26,6 +26,7 @@ spec:
         envFrom:
         - secretRef:
             name: external-secure-key-secret
+        - secretRef:
             name: external-private-key-secret
         resources:
           limits:
