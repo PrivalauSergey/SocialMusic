@@ -61,7 +61,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "homeapi", "homeapi", "{388745BE-BFBE-4611-9078-76666E41E549}"
 	ProjectSection(SolutionItems) = preProject
 		clusters\production\homeapi\deployment.yaml = clusters\production\homeapi\deployment.yaml
-		clusters\production\homeapi\ingress.yaml = clusters\production\homeapi\ingress.yaml
 		clusters\production\homeapi\kustomization.yaml = clusters\production\homeapi\kustomization.yaml
 		clusters\production\homeapi\service.yaml = clusters\production\homeapi\service.yaml
 	EndProjectSection
@@ -84,7 +83,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identityapi", "identityapi", "{589E0917-BF64-4555-AF3D-1D4EC6831D0E}"
 	ProjectSection(SolutionItems) = preProject
 		clusters\production\identityapi\deployment.yaml = clusters\production\identityapi\deployment.yaml
-		clusters\production\identityapi\ingress.yaml = clusters\production\identityapi\ingress.yaml
 		clusters\production\identityapi\kustomization.yaml = clusters\production\identityapi\kustomization.yaml
 		clusters\production\identityapi\service.yaml = clusters\production\identityapi\service.yaml
 	EndProjectSection
