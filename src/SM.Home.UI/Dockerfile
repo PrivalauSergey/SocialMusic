@@ -21,6 +21,6 @@ COPY --from=builder /app/dist/sm.home.ui /usr/share/nginx/html
 RUN apk add --no-cache brotli gzip && \
     rm -rf /etc/nginx/conf.d/default.conf
 
-EXPOSE 8080
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
