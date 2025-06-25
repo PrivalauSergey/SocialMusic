@@ -24,7 +24,7 @@ spec:
         - name: NG_APP_ENV
           value: "production"
         - name: NG_APP_API_BASE_URL
-          value: "http://SocialMusic"
+          value: "http://social-music.com"
         envFrom:
         - secretRef:
             name: external-secure-key-secret
