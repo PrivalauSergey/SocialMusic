@@ -76,6 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "homeui", "homeui", "{7243EB
 	ProjectSection(SolutionItems) = preProject
 		clusters\production\homeui\deployment.yaml = clusters\production\homeui\deployment.yaml
 		clusters\production\homeui\ingress.yaml = clusters\production\homeui\ingress.yaml
+		clusters\production\homeui\ingressClass.yaml = clusters\production\homeui\ingressClass.yaml
 		clusters\production\homeui\kustomization.yaml = clusters\production\homeui\kustomization.yaml
 		clusters\production\homeui\service.yaml = clusters\production\homeui\service.yaml
 	EndProjectSection
