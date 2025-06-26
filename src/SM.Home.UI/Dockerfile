@@ -6,8 +6,7 @@ RUN npm ci
 
 COPY src/SM.Home.UI .
 
-RUN npm run build -- -c production && \
-    ls -la /app/dist/
+RUN npm run build -- -c production
 
 FROM nginx:1.25-alpine
 RUN rm -rf /usr/share/nginx/html/*

@@ -12,7 +12,7 @@ import { EncryptionService } from '../common/encrypt.service';
 })
 export class AuthService {
 
-    private loginUrl = "http://localhost:8082/api/v1/login";
+    private baseAddress: string;
     private token: string | null = null;
     private key: string;
 
@@ -26,6 +26,7 @@ export class AuthService {
         private encrptionService: EncryptionService,
     ) {
         this.key = environment.secureKey;
+        this.baseAddress = environment.baseAddress;
     }
 
     login(
@@ -35,7 +36,7 @@ export class AuthService {
         const passwordString = this.ensureString(password);
         var encrypt = this.encrptionService.encryptPassword(passwordString, this.key);
         var data = new LoginRequestModel(login, encrypt.encryptedPassword, encrypt.iv);
-        return this.http.post<LoginResponseModel>(this.loginUrl, data, this.httpOptions)                     
+        return this.http.post<LoginResponseModel>(`${this.baseAddress}/api/v1/login`, data, this.httpOptions)                     
     }
 
     setToken(token: string): void {

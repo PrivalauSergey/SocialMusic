@@ -4,10 +4,10 @@ metadata:
   name: homeapi
   namespace: production
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: homeapi
   ports:
-  - port: 80
+  - port: 8082
     targetPort: 8082
    

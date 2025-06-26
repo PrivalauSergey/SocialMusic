@@ -10,7 +10,7 @@ import { EncryptionService } from '../common/encrypt.service';
 
 @Injectable({providedIn: 'root'})
 export class AccountService {
-    private accountUrl = "http://localhost:8082/api/v1/account";
+    private baseAddress: string;
     private token: string | null = null;
     private key: string;
 
@@ -24,6 +24,7 @@ export class AccountService {
         private encrptionService: EncryptionService,
     ) {
         this.key = environment.secureKey;
+        this.baseAddress = environment.baseAddress;
     }
 
     create(
@@ -34,7 +35,7 @@ export class AccountService {
         const passwordString = this.ensureString(password);
         var encrypt = this.encrptionService.encryptPassword(passwordString, this.key);
         var data = new AccountCreateRequest(login, email, encrypt.encryptedPassword, encrypt.iv) 
-        return this.http.post<AccountCreateResponse>(this.accountUrl, data, this.httpOptions)                     
+        return this.http.post<AccountCreateResponse>(`${this.baseAddress}/api/v1/account`, data, this.httpOptions)                     
     }
 
     ensureString(input: string | null | undefined): string {
