@@ -69,7 +69,7 @@ namespace SM.Identity.API.Extensions
             app.MapHealthChecks("/health");
             app.MapHealthChecks("/ready");
 
-            app.Run("http://0.0.0.0:8081");
+            app.Run("http://*:8081");
         }
     }
 }
