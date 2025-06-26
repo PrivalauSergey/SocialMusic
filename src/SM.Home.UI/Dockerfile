@@ -8,7 +8,7 @@ RUN npm ci
 
 COPY src/SM.Home.UI .
 
-RUN npm run build -- --configuration production
+RUN npm run build -- -c production
 
 FROM nginx:1.25-alpine
 
