@@ -1,4 +1,5 @@
 export const environment = {
     env: "development",
-    secureKey: 'from_enc'
+    secureKey: 'secret',
+    baseAddress: 'localhost:8082'
 };
