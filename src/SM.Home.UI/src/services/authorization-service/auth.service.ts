@@ -36,7 +36,7 @@ export class AuthService {
         const passwordString = this.ensureString(password);
         var encrypt = this.encrptionService.encryptPassword(passwordString, this.key);
         var data = new LoginRequestModel(login, encrypt.encryptedPassword, encrypt.iv);
-        return this.http.post<LoginResponseModel>(`${this.baseAddress}/api/v1/login`, data, this.httpOptions)                     
+        return this.http.post<LoginResponseModel>(`${this.baseAddress}/v1/login`, data, this.httpOptions)                     
     }
 
     setToken(token: string): void {

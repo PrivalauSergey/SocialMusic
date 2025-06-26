@@ -35,7 +35,7 @@ export class AccountService {
         const passwordString = this.ensureString(password);
         var encrypt = this.encrptionService.encryptPassword(passwordString, this.key);
         var data = new AccountCreateRequest(login, email, encrypt.encryptedPassword, encrypt.iv) 
-        return this.http.post<AccountCreateResponse>(`${this.baseAddress}/api/v1/account`, data, this.httpOptions)                     
+        return this.http.post<AccountCreateResponse>(`${this.baseAddress}/v1/account`, data, this.httpOptions)                     
     }
 
     ensureString(input: string | null | undefined): string {
