@@ -629,3 +629,38 @@ Additional theoretical modules to close gaps in mentee knowledge
 - [KISS](https://en.wikipedia.org/wiki/KISS_principle)
 - [YAGNEE](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 - [GoF Patterns](https://en.wikipedia.org/wiki/Design_Patterns)
+
+## Load Balancing Basic
+- [OSI Model](https://en.wikipedia.org/wiki/OSI_model)
+    - Packet encapsulation & decapsulation
+- [Ports Concept](https://en.wikipedia.org/wiki/Port_(computer_networking))
+- [L4 Load Balancing](https://www.vmware.com/topics/layer-4-load-balancing)
+    - Ports Mapping Method
+    - NAT/SNAT Load Balancing Relations (NAT Routing)
+    - Connection Security (TLS, SNI concepts)
+- [L7 Load Balancing](https://www.haproxy.com/glossary/what-is-layer-7-load-balancing)
+    - Application layer protocols pinned ports (ex. 80, 443, 22)
+    - L7 routing approaches (Path Based, Header Based, etc)
+    - [TLS Termination techniques](https://en.wikipedia.org/wiki/TLS_termination_proxy)
+- [DSN Load Balancing](https://www.cloudflare.com/learning/performance/what-is-dns-load-balancing/)
+- Pods vs containers
+    - [Linix namespaces](https://en.wikipedia.org/wiki/Linux_namespaces)
+- [AKS Networking and Load Balancing](https://kubernetes.io/docs/concepts/services-networking/)
+    - [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+        - ClusterIP
+        - NodePort
+        - Headless
+    - [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
+
+**Book**
+- [K8s Services](https://www.youtube.com/watch?v=T4Z7visMM4E)
+- K8s Networking under the hood
+    [Part1](https://blogs.cisco.com/developer/kubernetes-intro-1)
+    [Part2](https://blogs.cisco.com/developer/kubernetes-intro-2)
+    [Part3](https://blogs.cisco.com/developer/kubernetes-intro-3)
+    [Part4](https://blogs.cisco.com/developer/kubernetes-intro-4)
+- [K8s NodePort vs LB vs Ingress](https://www.youtube.com/watch?v=RQbc_Yjb9ls)
+- [K8s Services Networking Calico](https://www.youtube.com/watch?v=NFApeJRXos4)
+- [K8s Ingress Networking Calico](https://www.youtube.com/watch?v=NFApeJRXos4)
+- [Calico k8s service networking](https://www.youtube.com/watch?v=NFApeJRXos4)
+- [Calico k8s service networking](https://www.youtube.com/watch?v=40VfZ_nIFWI)
