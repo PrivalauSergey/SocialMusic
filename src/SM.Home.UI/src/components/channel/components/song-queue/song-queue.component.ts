@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 
 interface Song {
@@ -16,7 +16,7 @@ interface Song {
   selector: 'app-song-queue',
   templateUrl: './song-queue.component.html',
   styleUrls: ['./song-queue.component.scss'],
-  imports: [CommonModule]
+  imports: []
 })
 export class SongQueueComponent {
   @Input() channelId!: string;

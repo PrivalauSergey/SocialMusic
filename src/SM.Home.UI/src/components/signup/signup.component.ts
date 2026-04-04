@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -9,7 +9,7 @@ import { passwordRegex } from '../../directives/password-regex-validator-directi
 @Component({
   standalone: true,
   selector: 'account',
-  imports: [ReactiveFormsModule, FormsModule, RouterLink, RouterLinkActive, NgIf],
+  imports: [ReactiveFormsModule, FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { LoginRequestModel } from "./models/login-request.model";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginResponseModel } from './models/login-response.model';
+import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -24,9 +25,26 @@ export class AuthService {
         private http: HttpClient,
         private router: Router,
         private encrptionService: EncryptionService,
+        @Inject(OAuthService) private oauthService: OAuthService,
     ) {
         this.key = environment.secureKey;
         this.baseAddress = environment.baseAddress;
+
+        // configure oauthService
+        const authConfig: AuthConfig = {
+            issuer: this.baseAddress,
+            redirectUri: window.location.origin + '/auth-callback',
+            clientId: 'home_spa',
+            responseType: 'code',
+            scope: 'openid profile sm.home.api.read',
+            // allow refresh tokens
+            useSilentRefresh: true,
+            showDebugInformation: true,
+            strictDiscoveryDocumentValidation: false,
+            clearHashAfterLogin: true,
+        };
+        this.oauthService.configure(authConfig);
+        this.oauthService.setupAutomaticSilentRefresh();
     }
 
     login(
@@ -55,7 +73,7 @@ export class AuthService {
     }
 
     isAuthenticated(): boolean {
-        return this.getToken() !== null;
+        return this.oauthService.hasValidAccessToken() || this.getToken() !== null;
     }
 
     ensureString(input: string | null | undefined): string {

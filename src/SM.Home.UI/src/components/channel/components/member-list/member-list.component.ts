@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.scss',
-  imports: [CommonModule]
+  imports: []
 })
 export class MemberListComponent {
   @Input() isOwner = false;

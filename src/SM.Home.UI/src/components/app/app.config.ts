@@ -3,6 +3,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withJsonpSupport } from '@angular/common/http';
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -10,6 +11,7 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(
             withFetch(),
             withJsonpSupport()
-        )
+        ),  
+        provideOAuthClient()
     ]
 };

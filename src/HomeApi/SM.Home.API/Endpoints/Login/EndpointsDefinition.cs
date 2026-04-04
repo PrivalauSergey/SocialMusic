@@ -17,7 +17,6 @@ namespace SM.Home.API.Endpoints.Login
         public static RouteGroupBuilder MapLogin(this IEndpointRouteBuilder endpoints)
         {
             var group = endpoints.MapGroup("Login")
-                .WithOpenApi()
                 .WithTags("Log in");
 
             group.MapPost("/", async (

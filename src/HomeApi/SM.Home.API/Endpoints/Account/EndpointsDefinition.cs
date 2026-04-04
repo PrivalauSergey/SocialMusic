@@ -16,7 +16,6 @@ namespace SM.Home.API.Endpoints.Account
         public static RouteGroupBuilder MapAccounts(this IEndpointRouteBuilder endpoints)
         {
             var group = endpoints.MapGroup("Account")
-                .WithOpenApi()
                 .WithTags("User's Accounts");
 
             group.MapPost("/", async (

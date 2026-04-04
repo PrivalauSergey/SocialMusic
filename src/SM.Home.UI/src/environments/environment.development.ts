@@ -1,5 +1,6 @@
 export const environment = {
     env: "development",
     secureKey: 'secret',
-    baseAddress: 'localhost:8082'
+    // Identity server base address (include scheme)
+    baseAddress: 'http://localhost:8081'
 };

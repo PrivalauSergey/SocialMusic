@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using SM.Home.API.Configurations;
 using SM.Home.API.Endpoints;
 using SM.Home.API.Endpoints.Account.Models;
@@ -43,9 +43,7 @@ namespace SM.Home.API
             services.Configure<ApplicationSettings>(builder.Configuration);
             builder.Configuration.Bind(settings);
 
-            var rsa = RSA.Create();
-            rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)));
-
+            // Use Authority discovery for JWT validation (lets JwtBearer fetch signing keys automatically)
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -54,15 +52,14 @@ namespace SM.Home.API
             .AddJwtBearer(options =>
             {
                 options.Authority = settings.IdentityClientSettings.ClientUrl;
-                options.RequireHttpsMetadata = false;
+                options.RequireHttpsMetadata = false; // set to true in production
+                options.Audience = "sm.home.api"; // expected audience
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidAudience = "api",
                     ValidIssuer = settings.IdentityClientSettings.ClientUrl,
-                    ValidateLifetime = true,
-                    IssuerSigningKey = new RsaSecurityKey(rsa)
+                    ValidateLifetime = true
                 };
             });
 
@@ -83,19 +80,6 @@ namespace SM.Home.API
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
                     Scheme = "Bearer"
-                });
-                opt.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>() }
                 });
             });
 
