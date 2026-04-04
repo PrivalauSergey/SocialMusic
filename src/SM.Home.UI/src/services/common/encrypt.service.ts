@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
-import * as CryptoJS from 'crypto-js';
-
+import CryptoES from 'crypto-es';
 @Injectable({
     providedIn: 'root'
 })
 export class EncryptionService {
     
     encryptPassword(password: string, key: string): { encryptedPassword: string, iv: string } {
-        const iv = CryptoJS.lib.WordArray.random(128/8);
-        const encrypted = CryptoJS.AES.encrypt(
+        const iv = CryptoES.lib.WordArray.random(128/8);
+        const encrypted = CryptoES.AES.encrypt(
             password,
-            CryptoJS.enc.Base64.parse(key),
+            CryptoES.enc.Base64.parse(key),
             { 
-                iv: iv,
-                padding: CryptoJS.pad.Pkcs7,
-                mode: CryptoJS.mode.CBC
+                iv,
+                padding: CryptoES.pad.Pkcs7,
+                mode: CryptoES.mode.CBC
             }
         );
         
         return {
             encryptedPassword: encrypted.toString(),
-            iv: iv.toString(CryptoJS.enc.Hex)
+            iv: iv.toString(CryptoES.enc.Hex)
         };
     }
 

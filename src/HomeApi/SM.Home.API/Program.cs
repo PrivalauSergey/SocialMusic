@@ -2,7 +2,6 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,11 +13,10 @@ using SM.Home.API.Endpoints;
 using SM.Home.API.Endpoints.Account.Models;
 using SM.Home.API.Endpoints.Account.Validators;
 using SM.Home.API.Services;
+using SM.Identity.API.Client;
 using System;
-using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Tabasco.Scheduler.ApiClient;
 
 namespace SM.Home.API
 {
@@ -41,12 +39,12 @@ namespace SM.Home.API
 
             var services = builder.Services;
 
-            services.Configure<ApplicationSettings>(builder.Configuration);
             var settings = new ApplicationSettings();
+            services.Configure<ApplicationSettings>(builder.Configuration);
             builder.Configuration.Bind(settings);
 
             var rsa = RSA.Create();
-            rsa.ImportFromPem(settings.IdentityClientSettings.PublicKey);
+            rsa.ImportFromPem(Encoding.UTF8.GetString(Convert.FromBase64String(settings.IdentityClientSettings.PublicKey)));
 
             services.AddAuthentication(options =>
             {
@@ -125,6 +123,7 @@ namespace SM.Home.API
             // Clients
             services.AddIdentityClient(settings.IdentityClientSettings);
 
+            services.AddHealthChecks();
 
             var app = builder.Build();
 
@@ -143,9 +142,12 @@ namespace SM.Home.API
 
             app.MapApplicationEndpoints();
 
+            app.MapHealthChecks("/health");
+            app.MapHealthChecks("/ready");
+
             app.MapFallbackToFile("/index.html");
 
-            app.Run();
+            app.Run("http://*:8082");
         }
     }
 }

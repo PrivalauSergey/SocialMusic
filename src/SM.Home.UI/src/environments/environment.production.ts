@@ -1,4 +1,5 @@
 export const environment = {
     env: "production",
-    secureKey: 'empty'
+    secureKey: 'secret',
+    baseAddress: '/api'
 };

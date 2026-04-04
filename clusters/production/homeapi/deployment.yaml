@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeapi
+  template:
+    metadata:
+      labels:
+        app: homeapi
+      annotations:
+        fluxcd.io/automated: "true"
+    spec:
+      containers:
+      - name: homeapi
+        image: homeapi:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8082
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
+        envFrom:
+        - secretRef:
+            name: external-public-key-secret
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8082
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8082
+          initialDelaySeconds: 5
+          periodSeconds: 5
